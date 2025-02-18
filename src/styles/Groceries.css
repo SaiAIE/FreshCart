@@ -1,0 +1,85 @@
+.groceries{
+    /* border: 2px solid red; */
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    gap: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .groceries__item img{
+    /* min-width: 580px; */
+    width: 100%;
+    /* max-width: 520px; */
+    border-radius: 10px;
+  }
+  .groceries__item{
+    position: relative;
+  }
+  .groceries__item-content{
+    position: absolute;
+    top: 50px;
+    padding-left: 30px ;
+  }
+  .groceries__item-title{
+    font-size: 1.6em;
+    margin: 0;
+  }
+  .groceries__item-offer{
+    font-size: 0.9em;
+    margin: 0px 0;
+    color: #5C6C75;
+    font-weight: 600;
+  }
+  .groceries__item-btn{
+    padding: 10px 10px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: 600;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    margin: 16px 0px;
+  }
+  .groceries__item-btn:hover{
+    background: #03161f;
+  }
+  @media (max-width: 768px) {
+  .groceries{
+    flex-direction:column;
+    /* border: 2px solid red; */
+    padding: 0;
+  
+  }
+  .groceries__item{
+    width: 100%;
+    max-width: 400px;
+    gap: 2px;
+    display: flex;
+    line-height: 22px;
+  } 
+  .groceries__item-title{
+    font-size: 19px;
+    margin-top: -10px;
+  }
+  .groceries__item-offer{
+    font-size: 13px;
+    padding: 0;
+    margin: 0;
+    margin-top: 2px;
+  }
+  .groceries__item-btn{
+    font-size: 12px;
+    margin-top: 5px;
+    padding: 9px 13px;
+  }
+  .groceries__item img{
+    width: 100%;
+    /* height: 200px; */
+    object-fit: cover;
+  }
+}

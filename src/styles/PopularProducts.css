@@ -1,0 +1,185 @@
+.popular-products{
+    /* border: 2px solid red; */
+    width: 100%;
+    padding: 0px 110px;
+    margin: 30px 0px;
+  }
+  .popular-products__title{
+    font-size: 25px;
+    font-weight: 600;
+  }
+  .popular-products__list{
+    /* border: 2px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 0px;
+  }
+  .popular-products__item{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 14px;
+    border: 1px solid #5c6c752f;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    margin: 7px 0px;
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 330px;
+    max-height: 330px;
+  }
+  .popular-products__item:hover{
+    border: 1px solid #0AAD0A;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  }
+  .popular-products__item-options{
+    position: absolute;
+    top: 42%;
+    left:26%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    display: none;
+    transition: 1.5s ease-in-out;
+  }
+  .popular-products__item:hover .popular-products__item-options{
+    display: flex;
+  }
+  .popular-products__item-options i{
+    background: white;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #5C6C75;
+    transition: 0.3s ease-in-out;
+  }
+  .popular-products__item-options i:hover{
+    background: #0AAD0A;
+    color: white;
+  }
+  .popular-products__item-offers{
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    gap: 3px;
+    position: absolute;
+  }
+  .popular-products__offer{
+    /* border: 2px solid red; */
+    background: #DB3030;
+    color: white;
+    padding: 2px 10px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 10px;
+  }
+  .popular-products__offer-value{
+    /* border: 2px solid red; */
+    background: #198754;
+    color: white;
+    padding: 2px 10px;
+    border-radius: 5px;
+    /* font-weight: 600; */
+    font-weight: 700;
+    font-size: 10px;
+  }
+  .popular-products__item-content{
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    gap: 3px;
+  }
+  .popular-products__item-rating{
+    color: gold;
+    /* border: 2px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 22px;
+  }
+  .popular-products__item-rating span{
+    color: #5c6c75cf;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .popular-products__item-category{
+    /* border: 2px solid red; */
+    font-size: 12px;
+    font-weight: 500;
+    color: #5c6c75a5;
+  }
+  .popular-products__item-name{
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .popular-products__item-price-cart{
+    /* border: 2px solid red; */
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 0px;
+  }
+  .popular-products__item-price{
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .popular-products__item-original-price{
+    font-size: 13px;
+    color: #5c6c75a5;
+    font-weight: 600;
+    text-decoration: line-through;
+  }
+  .popular-products__item-btn{
+    padding: 7px 12px;
+    background: #0AAD0A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: 600;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    margin: 10px 0px;
+  }
+  .popular-products__item-btn:hover{
+    background: #009100;
+  }
+  @media (max-width: 768px) {
+
+  .popular-products{
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    /* align-items: start; */
+    padding: 0px 20px;
+    width: 100%;
+  }
+  .popular-products__item{
+    /* border: 2px solid red; */
+    width: 190px;
+    height: 335px;
+    min-width: 190px;
+    max-width: 190px;
+  } 
+  .popular-products__item-btn{
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 12px;
+  }
+  .popular-products__offer,.popular-products__offer-value{
+    font-size: 12px;
+  }
+  .popular-products__item-options{
+    left: 20%;
+  }
+}

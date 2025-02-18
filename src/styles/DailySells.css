@@ -1,0 +1,272 @@
+.daily-best-sells{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px 110px;
+    gap: 30px;
+    margin: 40px 0px;
+    margin-bottom: 80px;
+    /* border: 2px solid red; */
+  
+  }
+  .daily-best-sells__title{
+    font-weight: 600;
+
+  }
+  .daily-best-sells__list{
+    /* border: 2px solid red; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .daily-best-sells__item--1,.daily-best-sells__item-content{
+    position: relative;
+    min-width: 250px;
+    max-width: 550px;
+    min-height: 350px;
+  }
+  .daily-best-sells__item-img{
+    height: 350px;
+    /* border: 2px solid red; */
+    /* width: 100%; */
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .daily-best-sells__item-description{
+    position: absolute;
+    /* border: 2px solid red; */
+    width: 190px;
+    top: 10px;
+    color: white;
+    left: 30px;
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+  }
+  .daily-best-sells__item-title{
+    font-size: 23px;
+  }
+  .daily-best-sells__item-desc{
+    font-size: 14px;
+  }
+  .daily-best-sells__item-btn{
+    padding: 10px 10px;
+    background: #0AAD0A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    margin: 10px 0px;
+  }
+  .daily-best-sells__item-btn:hover{
+    background: #0aad0acd;
+  }
+  .daily-best-sells__item--2{
+    border: 1px solid #5c6c753b;
+    width: 100%;
+    min-width: 130px;
+    max-width: 320px;
+    /* height: 470px; */
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-evenly;
+    border-radius: 10px;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    position: relative;
+    /* border: 2px solid red; */
+    min-height: 490px;
+    max-height: 490px;
+  }
+  
+  .daily-best-sells__item-options{
+    position: absolute;
+    top: 42%;
+    left:26%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    display: none;
+    transition: 0.5s ease-in-out;
+
+  }
+  .daily-best-sells__item--2:hover .daily-best-sells__item-options{
+    display: flex;
+  }
+  .daily-best-sells__item-options i{
+    background: white;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #5C6C75;
+    transition: 0.3s ease-in-out;
+  }
+  .daily-best-sells__item-options i:hover{
+    background: #0AAD0A;
+    color: white;
+  }
+  .daily-best-sells__item-options:hover{
+    /* border: 1px solid #0AAD0A; */
+    box-shadow: 0px 2px 2px 2px black;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  }
+  .daily-best-sells__item-img-1{
+    min-height: 485px;
+    max-height: 485px;
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .daily-best-sells__item-img-containe{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .daily-best-sells__item-img{
+    /* border: 2px solid red; */
+    padding: 0;
+    /* height: 270px; */
+    /* width: 100%; */
+    height: 100%;
+  }
+  .daily-best-sells__item-category{
+    font-size: 11px;
+    color: #5C6C75;
+    font-weight: 500;
+  }
+  .daily-best-sells__item-title{
+    font-size: 23px;
+    font-weight: 700;
+  }
+  .daily-best-sells__item-title-2{
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .daily-best-sells_item-content{
+    /* border: 2px solid red; */
+    gap: 7px;
+    display: flex;
+    flex-direction: column;
+  }
+  .daily-best-sells__item-price-rating{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .daily-best-sells__item-price{
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .daily-best-sells__item-original-price{
+    text-decoration: line-through;
+    font-size: 13px;
+    color: #5C6C75;
+    font-weight: 400;
+  }
+  .daily-best-sells__item-rating{
+    color: gold;
+    font-size: 20px;
+  }
+  .daily-best-sells__item-rating span{
+    color: #2C3E50;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .daily-best-sells__item-btn{
+    padding: 12px 10px;
+    background: #0AAD0A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 600;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    margin: 10px 0px;
+    font-size: 14px;
+  }
+  .daily-best-sells__item-btn:hover{
+    background: #0aad0acd;
+  }
+  .daily-best-sells__item-timer{
+    /* border: 2px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 0px 9px;
+    margin-bottom: 10px;
+  }
+  .daily-best-sells__item-timer-unit{
+    border: 1px solid #5c6c7550;
+    padding: 6px;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+  .daily-best-sells__item-timer-unit span{
+    color: #5C6C75;
+    font-size: 12px;
+  }
+
+  @media (max-width: 768px) {
+
+  .daily-best-sells{
+    padding: 10px 20px;
+    /* overflow: scroll; */
+    /* border: 2px solid red; */
+  }
+  .daily-best-sells__list{
+    /* border: 2px solid red; */
+    min-height: 520px;
+    max-height: 550px;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+  }
+  .daily-best-sells__item--1{
+    /* width: 490px; */
+    /* border: 2px solid red; */
+    min-width: 400px;
+    max-width: 450px;
+  }
+  .daily-best-sells__item-img{
+    /* width: 390px; */
+    width: 100%;
+    /* border: 2px solid red; */
+  }
+  .daily-best-sells__item--2{
+    min-width: 335px;
+    padding-bottom: 10px;
+    /* border: 2px solid red; */
+    min-height:500px ;
+  }
+  .daily-best-sells__item-img-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .daily-best-sells__item-img-1{
+    min-height: 520px;
+  }
+  .daily-best-sells__item-description{
+    width: 320px;
+  }
+  .daily-best-sells__list{
+    overflow: scroll;
+  }
+  .daily-best-sells__item--1,.daily-best-sells__item--2{
+    width: 100%;
+  }
+}
