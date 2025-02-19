@@ -343,7 +343,10 @@
     color: white;
     font-weight: 600;
   }
-
+  .fa-user{
+    /* border: 2px solid red; */
+    margin-right: -15px;
+  }
   @media (max-width: 768px) {
 
     .searchbar{
@@ -426,6 +429,11 @@
         margin-left:10px ;
         display: block;
 
+      }
+      .fa-user{
+        /* border: 2px solid red; */
+        margin-left: 8px;
+        margin-right: -10px;
       }
 
 }

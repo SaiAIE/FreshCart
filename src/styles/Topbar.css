@@ -3,15 +3,15 @@
     display: flex;
     width: 100%;
     /* width: 100vw; */
-    padding: 0px 120px;
+    padding: 0px 110px;
     align-items: center;
     justify-content: space-between;
     background: #F0F3F2;
     color: #5C6C75;
     font-size: 14px;
     font-weight: 500;
-  
   }
+
   .topbar__dropdown{
     /* border: 2px solid red; */
     position: relative;
@@ -33,6 +33,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    padding-right: 0;
   }
   .topbar__dropdown-heading:hover{
     color: green;
@@ -86,7 +87,10 @@
     flex-direction: row;
     animation: popUp 0.4s ease forwards;
   }
-
+  .topbar__menu{
+    margin: 0;
+    padding-right: 0;
+  }
   @keyframes popUp {
     0% {
       opacity: 0;
