@@ -1,0 +1,183 @@
+.footer {
+  background-color: #f5f7f8;
+  padding: 60px 110px;
+  color: #5C6C75;
+  width: 100%;
+  /* border: 2px solid red; */
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 00px;
+}
+
+.footer__column {
+  flex: 1;
+  min-width: 170px;
+  /* border: 2px solid red; */
+}
+
+.footer__column-heading {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C3E50;
+  margin-bottom: 15px;
+}
+
+.footer__column-list {
+  list-style: none;
+  padding: 0;
+}
+
+.footer__column-item {
+  margin-bottom: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.footer__column-item:hover {
+  background: none;
+  color: #0AAD0A;
+}
+
+.footer__bottom {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  padding-top:30px ;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.footer__payment-partners {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  /* border-bottom: 1px solid #e0e0e0; */
+  color: black;
+
+}
+
+.footer__payment-partner-logo {
+  width: 40px;
+  height: auto;
+}
+
+.footer__app-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 820px;
+  font-size: 14px;
+  font-weight: 600;  
+}
+
+.footer__app-link-logo {
+  width: 120px;
+  height: auto;
+}
+
+.footer__highlight {
+  color: #0AAD0A;
+  font-weight: bold;
+}
+.footer__last{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  /* padding-bottom: 80px; */
+  padding-top: 10px;
+}
+.footer__last-text{
+  font-size: 12px;
+}
+.footer__social-icon{
+  font-size: 20px;
+  border: 1px solid #5c6c75a5;
+  padding: 8px;
+  margin: 0px 5px;
+  border-radius: 15px;
+}
+.buy-now{
+  /* border: 2px solid red; */
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: 650;
+  background: #03161f;
+  color: white;
+  border-radius: 8px;
+  position: absolute;
+  bottom: 50px;
+  position: fixed;
+  right: 30px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.buy-now:hover{
+  background: #03161fe0;
+}
+@media (max-width: 768px) {
+.footer__bottom{
+  flex-direction: column;
+}
+.footer__content{
+  /* border: 2px solid red; */
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 0;
+  margin-right: 0;
+}
+.footer{
+  padding: 0;
+  padding: 80px 10px;
+}
+.footer__app-links{
+  padding: 0;
+  margin: 0;
+  display: flex;
+  /* border: 2px solid red; */
+  padding: 0px 10px;
+  width: 100%;
+  flex-direction: column;
+  align-items: start;
+}
+.footer__last{
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+  font-size: 12px;
+  padding: 30px 10px;
+
+}
+.footer__social-icon{
+  font-size: 15px;
+  border-radius: 8px;
+  padding: 5px;
+}
+.footer__payment-partners{
+  padding: 0px 9px;
+}
+.buy-now{
+  /* border: 2px solid red; */
+  font-size: 15px;
+}
+}
+@media (max-width:340px){
+  .footer__payment-partners{
+    flex-direction: column;
+  }
+}
