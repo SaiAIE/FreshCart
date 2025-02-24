@@ -149,6 +149,8 @@
     font-size: 11px;
     color: #5C6C75;
     font-weight: 500;
+    /* border: 2px solid red; */
+    margin: 0;
   }
   .daily-best-sells__item-title{
     font-size: 23px;
@@ -157,18 +159,24 @@
   .daily-best-sells__item-title-2{
     font-size: 13px;
     font-weight: 600;
+    /* border: 2px solid red; */
+    margin: 0;
   }
   .daily-best-sells_item-content{
     /* border: 2px solid red; */
     gap: 7px;
     display: flex;
     flex-direction: column;
+
   }
   .daily-best-sells__item-price-rating{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    /* border: 2px solid red; */
+    padding: 0;
+    margin: 0;
   }
   .daily-best-sells__item-price{
     font-size: 14px;
@@ -238,18 +246,20 @@
     /* border: 2px solid red; */
   }
   .daily-best-sells__list{
-    /* border: 2px solid red; */
-    min-height: 520px;
-    max-height: 550px;
     display: flex;
     align-items: center;
     /* justify-content: center; */
+  }
+  .daily-best-sells_item-content{
+  /* gap: -10px; */
+  /* border: 2px solid red; */
   }
   .daily-best-sells__item--1{
     /* width: 490px; */
     /* border: 2px solid red; */
     min-width: 400px;
     max-width: 450px;
+    height: 100%;
   }
   .daily-best-sells__item-img{
     /* width: 390px; */
@@ -260,7 +270,9 @@
     min-width: 335px;
     padding-bottom: 10px;
     /* border: 2px solid red; */
-    min-height:500px ;
+    min-height:525px ;
+    max-height: 525px;
+    gap: 0;
   }
   .daily-best-sells__item-img-container{
     display: flex;

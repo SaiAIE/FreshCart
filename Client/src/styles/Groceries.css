@@ -18,16 +18,21 @@
 .groceries__item {
   position: relative;
   width: 100%;
+  /* border: 2px solid red; */
+  height: auto;
 }
 
 .groceries__item-content {
   position: absolute;
-  top: 50px;
-  padding-left: 30px;
+  top: 53%;
+  left: 28%;
+  /* padding-left: 30px; */
+  transform: translate(-50%,-50%);
 }
 
 .groceries__item-title {
   font-size: 1.6em;
+  font-weight: 700;
   margin: 0;
 }
 
@@ -97,17 +102,19 @@
 
   .groceries__item-title {
     font-size: 1.2em;
-    margin-top: -10px;
+    font-weight: 600;
+    /* margin-top: -10px; */
+    /* border: 2px solid red; */
   }
 
   .groceries__item-offer {
     font-size: 0.8em;
-    margin-top: 2px;
+    /* margin-top: 2px; */
   }
 
   .groceries__item-btn {
     font-size: 0.9em;
-    margin-top: 5px;
+    /* margin-top: 5px; */
     padding: 9px 13px;
   }
 
@@ -121,13 +128,18 @@
 @media (max-width: 480px) {
   /* For very small screens (phones) */
   .groceries {
-    padding: 10px;
+    padding:20px;
+    gap: 0px;
   }
-
+  .groceries__item-content {
+  left: 25%;
+  }
   .groceries__item {
     width: 100%;
     max-width: 100%;
     gap: 10px;
+    min-height: auto;
+    max-height: 100%;
     display: flex;
     flex-direction: column;
     line-height: 20px;
