@@ -40,7 +40,7 @@ const PopularProducts = () => {
               </p>
               <div className='popular-products__item-price-cart'>
                 <h3 className='popular-products__item-price'>{product.price} <span className='popular-products__item-original-price'>{product.originalPrice}</span></h3>
-                <button className='popular-products__item-btn'>+ Add</button>
+                <button className='popular-products__item-btn' onClick={(e)=>{e.stopPropagation();e.preventDefault()}}>+ Add</button>
               </div>
             </div>
             <div className='popular-products__item-options'>
