@@ -123,10 +123,9 @@ width: 100%;
 .product-details__counter{
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
+    justify-content: start;
 }
-
 
 }
 
@@ -138,11 +137,12 @@ width: 100%;
         align-items: center;
         justify-content: start;
     }
-    .product-details__counterr{
+    .product-details__counter{
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        /* border: 2px solid red; */
     }
     .product-details__options{
         flex-direction: column;
