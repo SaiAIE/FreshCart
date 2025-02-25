@@ -63,7 +63,7 @@ const Cart = ({ isOpen, onClose }) => {
     </div>
     <div>
     <p className='text-end fw-bold m-0'>
-    ${((parseFloat(product.price.replace("$", "")) || 0) * product.quantity).toFixed(2)}
+    ${((parseFloat(String(product.price).replace("$", "")) || 0) * product.quantity).toFixed(2)}
 </p>
     </div>
 </div>
