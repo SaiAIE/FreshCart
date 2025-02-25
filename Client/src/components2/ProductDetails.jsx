@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios'; 
 import "../styles2/ProductDetails.css"; 
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ProductInfo from './ProductInfo';
+import { FiShoppingBag } from "react-icons/fi";
 import RelatedItems from './RelatedItems';
+import { useCart } from '../contexts/CartContext';
 
 const ProductDetail = () => { 
+  const {addToCart} = useCart()
   const [product, setProduct] = useState(null); 
   const [mainImage, setMainImage] = useState([]); 
   const { id } = useParams(); 
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   const api = import.meta.env.VITE_BACKEND;
 
@@ -101,13 +104,13 @@ const ProductDetail = () => {
             ))}
           </div>
           <div className='product-details__counter my-4'>
-            <button onClick={() => setCount(count - 1)} className='product-details__counter-btn btn border'>-</button>
+            <button onClick={() => setCount(prev => Math.max(1, prev - 1))} className='product-details__counter-btn btn border'>-</button>
             <span className='product-details__counter-display border px-3 py-2'>{count}</span>
             <button onClick={() => setCount(count + 1)} className='product-details__counter-btn btn border'>+</button>
           </div>
           <div className='product-details__options d-flex gap-2'>
-            <button className='product-details__button product-details__button--add-to-cart bg-success text-white border btn spx-4 py-2'>
-              <i className="fa-solid fa-bag-shopping"></i> Add To Cart
+            <button className='product-details__button product-details__button--add-to-cart bg-success text-white border btn spx-4 px-3 py-2 fs-6 fw-bold' onClick={(e)=>{e.stopPropagation();e.preventDefault();addToCart(product,count)}}>
+            <FiShoppingBag className='fs-5 fw-bold me-1'/> Add To Cart
             </button>
             <button className='product-details__button btn border text-secondary bg-light'>
               <i className="fa-solid fa-right-left"></i>

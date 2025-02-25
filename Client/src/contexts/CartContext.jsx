@@ -20,7 +20,7 @@ export const CartProvider = ({ children }) => {
         }
     }, [cart]); // Update localStorage when cart changes
  
-    const addToCart = (product) => {
+    const addToCart = (product,quantity=1) => {
         if (!product || !product._id) {
             console.error("Invalid product:", product);
             return;
@@ -31,10 +31,10 @@ export const CartProvider = ({ children }) => {
  
             if (existingProduct) {
                 return prevCart.map((item) =>
-                    item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item
+                    item._id === product._id ? { ...item, quantity: item.quantity + quantity } : item
                 );
             } else {
-                return [...prevCart, { ...product, quantity: 1 }];
+                return [...prevCart, { ...product, quantity }];
             }
         });
         alert(`${product.name} added to cart!`);

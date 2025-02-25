@@ -29,9 +29,9 @@ const Cart = ({ isOpen, onClose }) => {
 </div>
 <hr />
             {cartItems.length === 0 ? (
-<div className='text-center mt-5 h-100 w-100  d-flex flex-column align-items-center justify-content-center m-0 p-0'>
-<h5 className='text-black fs-3 '>Oops! <br /> <span className='text-muted fs-5 fw-normal'>Your Cart is Empty</span> </h5>
-<button className='btn btn-primary bg-success text-white mt-3' onClick={onClose}>
+<div className='text-center h-100 w-100  d-flex flex-column align-items-center justify-content-center m-0 p-0'>
+<h5 className='text-black fs-4 '>Oops! <br /> <span className='text-muted fs-6 fw-normal'>Your Cart is Empty</span> </h5>
+<button className='btn btn-primary bg-success text-white mt-3 fs-6' onClick={onClose}>
                         Shop Now
 </button>
 </div>
