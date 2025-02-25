@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from 'react';
 import { useCart } from '../contexts/CartContext';
-import { FiShoppingBag } from "react-icons/fi";
 import Cart from "./Cart"
 import axios from "axios"
 import logo from "../assets/logo.svg";
