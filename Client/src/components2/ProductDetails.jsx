@@ -100,7 +100,7 @@ const ProductDetail = () => {
           <hr />
           <div className='product-details__quantity-lists d-flex my-3'>
             {product.details?.quantity.map((qnty, item) => (
-              <p className='product-details__quantity-item border border-secondary rounded m-1 px-3 py-2'>{qnty}</p>
+              <p className='product-details__quantity-item border border-secondary rounded m-1 px-3 py-2' key={qnty}>{qnty}</p>
             ))}
           </div>
           <div className='product-details__counter my-4'>

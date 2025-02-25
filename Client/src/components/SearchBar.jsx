@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { useCart } from '../contexts/CartContext';
+import { FiShoppingBag } from "react-icons/fi";
 import Cart from "./Cart"
 import axios from "axios"
 import logo from "../assets/logo.svg";
@@ -106,7 +107,7 @@ const SearchBar = () => {
           <span className='searchbar__options-count'>4</span>
         </i>
         <i className="fa-regular fa-user searchbar__options-icon"></i>
-        <i className="fa-solid fa-bag-shopping searchbar__options-icon" onClick={()=>setCartOpen(true)}>
+        <i className="fa-solid fa-cart-shopping searchbar__options-icon" onClick={()=>setCartOpen(true)}>
           <span className='searchbar__options-count'>{cart.length}</span>
         </i>
         <Cart isOpen={cartOpen} onClose={()=>setCartOpen(false)}/>

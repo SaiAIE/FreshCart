@@ -6,14 +6,9 @@ const Cart = ({ isOpen, onClose }) => {
     const { cart, removeFromCart, incrementQuantity, decrementQuantity } = useCart();
     const [cartItems, setCartItems] = useState([]);
  
-    console.log(cartItems);
- 
     useEffect(() => {
         setCartItems(cart);
     }, [cart]);
-
-    console.log("usecart:",useCart())
-
  
     return (
         <div className={`cart-overlay ${isOpen ? "open" :""}`}>

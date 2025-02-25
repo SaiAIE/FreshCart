@@ -6,7 +6,6 @@ import "../styles/PopularProducts.css";
 
 const PopularProducts = () => {
     const [products,setProducts] = useState([])
-    console.log(products)
     const {addToCart} = useCart()
     const [filteredProducts, setFileteredProducts] = useState([])
     const [originalOrder,setOriginalOrder] = useState([])
@@ -112,7 +111,7 @@ const PopularProducts = () => {
   return (
     <div className='popular-products'>
       <h2 className='popular-products__title'>Popular Products</h2>
-      <div  className='popular-products__controls'>
+      <div  className='popular-products__controls mt-3'>
         <div className='dropdown' onClick={()=> toggleDropdown('category')}>
           <span className='dropdown-heading'>Category <i class="fa-solid fa-angle-down"></i></span>
           {dropdowns.category && (

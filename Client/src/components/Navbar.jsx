@@ -5,7 +5,6 @@ import "../styles/Navbar.css";
 
 const Navbar = () => {
   const [dropdownData, setDropdownData] = useState([]);
-  console.log(dropdownData)
   const api = import.meta.env.VITE_BACKEND;
 
   useEffect(() => {
