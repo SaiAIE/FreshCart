@@ -2,10 +2,12 @@ import React,{useState,useEffect} from 'react'
 import axios from "axios"
 import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext';
+import "../styles2/RelatedItems.css"
 
 const RelatedItems = () => {
     const {addToCart} = useCart()
     const [products,setProducts] = useState([])
+    const [loading,setLoading] = useState(true)
     const api = import.meta.env.VITE_BACKEND
   
     useEffect(()=>{
@@ -13,9 +15,11 @@ const RelatedItems = () => {
         try{
           const response = await axios.get(`${api}/api/product/`)
           setProducts(response.data)
+          setLoading(false)
         }
         catch(err){
           console.log(err.message)
+          setLoading(false)
         }
       }
       fetchProducts()
@@ -24,7 +28,22 @@ const RelatedItems = () => {
     <div className='popular-products w-100 p-0'>
       <h2 className='popular-products__title'>Related Items</h2>
       <div className='popular-products__list'>
-        {products.slice(0, 5).map((product, index) => (
+        {loading ? (
+          [...Array(5)].map((_,index)=>(
+            <div className='popular-products__item skeleton' key={index}>
+              <div className='skeleton-img placeholder w-100'></div>
+              <div className='skeleton-content mt-3 mb-3'>
+                <div className='placeholder w-50 mb-2'></div>
+                <div className='placeholder w-100 mb-2'></div>
+                <div className='placeholder w-75'></div>
+              </div>
+              <div className='skeleton-pricecart'>
+                <div className='placeholder w-50 mb-2'></div>
+                <div className='placeholder w-25'></div>
+              </div>
+            </div>
+          ))
+        ):(products.slice(0, 5).map((product, index) => (
           <Link to={`/product/${product._id}`} className='popular-products__item' key={product._id}>
             <div className='popular-products__item-offers'>
               {product.offer && <span className='popular-products__offer'>{product.offer}</span>}
@@ -48,7 +67,7 @@ const RelatedItems = () => {
               <i className="fa-solid fa-arrow-right-arrow-left popular-products__item-option"></i>
             </div>
           </Link>
-        ))}
+        )))}
       </div>
     </div>
   )

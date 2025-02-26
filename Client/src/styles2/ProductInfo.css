@@ -42,6 +42,14 @@
     background: #0AAD0A;
     color: white;
 }
+
+/* Skeleton container to hold both heading and paragraph */
+.skeleton-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adds some space between the heading and paragraph skeletons */
+  }
+
 .submit-btn:hover{
     background: #026e02;
     color: white;
@@ -84,3 +92,175 @@
     padding: 10px 10px;
 }
 }
+
+/* * PRODUCT-DESCRIPTION LOADING */
+
+  /* Skeleton styles for heading */
+  .product-info__section-heading-skeleton {
+    width: 150px;  /* Set width for the heading skeleton */
+    height: 20px;  /* Set height for the heading skeleton */
+    background-color: #e0e0e0;
+    border-radius: 4px;  /* Rounded corners */
+  }
+  
+  /* Skeleton styles for paragraph */
+  .product-info__section-description-skeleton {
+    width: 100%;  /* Full width of the container */
+    height: 30px;  /* Adjust height for each line */
+    background-color: #e0e0e0;
+    border-radius: 4px;  /* Rounded corners */
+  }
+  
+/* Optional shimmering effect */
+@keyframes shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: 200px 0;
+    }
+  }
+  
+  /* Apply shimmering effect to skeletons */
+  .product-info__section-heading-skeleton,
+  .product-info__section-description-skeleton  {
+    background: linear-gradient(to right, #e0e0e0 8%, #f2f2f2 50%, #e0e0e0 92%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+/* * PRODUCT-INFORMATION LOADING */
+
+  /* Skeleton for the label */
+.skeleton-label {
+    width: 100%;  
+    height: 100%;  
+    margin: 0;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}
+
+/* Skeleton for the value */
+.skeleton-value {
+    width: 100%;    /* Value takes full width of the container */
+    height: 100%;   /* Set height for the value */
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 0;
+}
+
+/* Optional shimmering effect for skeleton loaders */
+@keyframes skeleton-shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: 200px 0;
+    }
+}
+
+/* Apply shimmer animation to skeletons */
+.skeleton-label, .skeleton-value {
+    background: linear-gradient(to right, #e0e0e0 8%, #f2f2f2 50%, #e0e0e0 92%);
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s infinite linear;
+}
+
+
+
+
+/* Skeleton Loader for ReviewItem */
+.skeleton-review-item {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    border: 2px solid red;
+  }
+  
+  .skeleton-review-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(285deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+  
+  .skeleton-review-content {
+    width: 100%;
+  }
+  
+  .skeleton-review-header {
+    margin-bottom: 10px;
+  }
+  
+  .skeleton-reviewer-name, .skeleton-review-date, .skeleton-review-status {
+    background: linear-gradient(285deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+  
+  .skeleton-reviewer-name {
+    width: 150px;
+    height: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .skeleton-review-date {
+    width: 100px;
+    height: 14px;
+    margin-right: 10px;
+  }
+  
+  .skeleton-review-status {
+    width: 130px;
+    height: 14px;
+  }
+  
+  .skeleton-review-comment {
+    background: linear-gradient(285deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+    width: 80%;
+    height: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .skeleton-review-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+  }
+  
+  .skeleton-footer-action {
+    width: 100px;
+    height: 16px;
+    background: linear-gradient(285deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+  
+  .skeleton-review-images {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .skeleton-review-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin: 5px;
+    background: linear-gradient(285deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+  
