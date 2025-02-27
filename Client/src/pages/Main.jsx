@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // import "../Freshcart.css"
 
 import Topbar from '../components/Topbar.jsx'
@@ -13,6 +13,10 @@ import DailySells from "../components/DailySells.jsx"
 import Footer from '../components/Footer.jsx'
 
 const Main = () => {
+  useEffect(()=>{
+    import("./Product.jsx")
+  },[])
+  
   return (
     <div className='freshcart'>
         <Topbar/>
