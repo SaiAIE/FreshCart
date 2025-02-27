@@ -12,9 +12,10 @@ const Footer = () => {
       try {
         const response = await axios.get(`${api}/api/footer/`);
         setFooterData(response.data);
-        setLoading(false);
       } catch (err) {
         console.log(err.message);
+      } finally{
+        setLoading(false);
       }
     };
     fetchFooter();

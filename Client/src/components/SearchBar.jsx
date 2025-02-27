@@ -8,6 +8,8 @@ import "../styles/Searchbar.css";
 const SearchBar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [dropdownData,setDropdownData] = useState([])
+  const [loading,setLoading] = useState(true)
+  const [error,setError] = useState("")
   const {cart} = useCart()
   const [cartOpen, setCartOpen] = useState(false)
 
@@ -21,6 +23,10 @@ const SearchBar = () => {
       }
       catch(err){
         console.log(err.message)
+        setError("Please Try Again Later !!!")
+      }
+      finally{
+        setLoading(false)
       }
     }
     fetchDropdown()
@@ -47,6 +53,18 @@ const SearchBar = () => {
                 <input type="input" placeholder='Search for products' className='searchbar__input-field' />
                 <i className='fa-solid fa-magnifying-glass'></i>
               </div>
+
+              {loading && (
+                <div className='d-flex align-items-center justify-content-center w-100'>
+                <div className='loader'></div>
+                </div>
+              ) }
+
+              {error && (
+                <div className='d-flex align-items-center justify-content-center w-100'>
+                  <div className='text-center fs-5 fw-normal'>{error}</div>
+                </div>
+              )}
 
               {dropdownData.map((item, index) => (
                 <div className='searchbar__dropdown' key={index}>

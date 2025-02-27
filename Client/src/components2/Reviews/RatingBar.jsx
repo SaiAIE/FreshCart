@@ -1,26 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { ProgressBar } from 'react-bootstrap';
 
-const RatingBar = ({ index, rating }) => {
-  const [loading, setLoading] = useState(true);
-
-  // Simulate loading for 1 second before showing the actual data
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000); // Adjust loading time as needed
-
-    return () => clearTimeout(timer);
-  }, []);
+const RatingBar = ({ index, rating,loading }) => {
 
   return (
     <div key={index} className='product-info__rating-bar d-flex align-items-center my-2'>
       {loading ? (
         // Skeleton loader for the rating bar
-        <div className="skeleton-rating-bar">
-          <div className="skeleton-star"></div>
-          <div className="skeleton-progress-bar"></div>
-          <div className="skeleton-percentage"></div>
+        <div className="loader">
         </div>
       ) : (
         // Actual content when loading is complete

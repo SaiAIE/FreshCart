@@ -150,3 +150,37 @@
   }
 }
 
+.features-products__card-skeletons{
+background: white;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+padding: 10px 20px;
+padding-bottom: 0px;
+}
+.features-products__card-img-skeleton{
+  background-image: linear-gradient(285deg, #f3f2f2 25%, #e0e0e0 50%, #f3f2f2 75%);
+  background-size: 200% 100%; 
+  animation: shimmer 1.5s infinite;
+  width: 95%;
+  height: 80%;
+  border-radius: 5px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+.features-products__card-title-skeleton{
+  border-radius: 5px;
+  height: 40px;
+  width: 95%;
+  background-image: linear-gradient(285deg, #f3f2f2 25%, #e0e0e0 50%, #f3f2f2 75%);
+  background-size: 200% 100%; 
+  animation: shimmer 1.5s infinite;
+}

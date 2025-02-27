@@ -4,8 +4,9 @@ import RatingBar from './Reviews/RatingBar';
 import ReviewItem from './Reviews/ReviewItem';
 import CreateReview from './Reviews/CreateReview';
 import "../styles2/Reviews.css"
+import { SkeletonReviewItem } from './Reviews/ReviewItem';
 
-const ProductInfo = ({ product,loading}) => {
+const ProductInfo = ({ product, loading }) => {
     const [activeTab, setActiveTab] = useState("Product Details");
 
     const ratings = [
@@ -25,9 +26,9 @@ const ProductInfo = ({ product,loading}) => {
             <div className='product-info__tabs'>
                 {/* Tab Buttons */}
                 <div style={{ display: 'flex', cursor: 'pointer' }} className='product-info__tabs-container my-4 mt-5 border-bottom'>
-                    {["Product Details", "Information", "Reviews", "Seller"].map((tab,index) => (
+                    {["Product Details", "Information", "Reviews", "Seller"].map((tab, index) => (
                         <p
-                        key={index}
+                            key={index}
                             className={`product-info__tab ${activeTab === "Product Details" ? 'product-info__tab--active' : ''} fw-normal fs-6`}
                             onClick={() => handleTabClick(tab)}
                             style={{ color: activeTab === tab ? '#0AAD0A' : '#5C6C75', textDecoration: activeTab === tab ? 'underline' : 'none', marginRight: 20 }}
@@ -47,13 +48,13 @@ const ProductInfo = ({ product,loading}) => {
                                         <h5 className='product-info__section-heading-skeleton'></h5>
                                         <p className='product-info__section-description-skeleton'></p>
                                     </div>
-                                ):(
+                                ) : (
                                     <div>
-                                         <h5 className='product-info__section-heading fs-5 fw-bold'>{product?.details?.[key]?.heading}</h5>
-                                         <p className='product-info__section-description fs-6'>{product?.details?.[key]?.description}</p>
+                                        <h5 className='product-info__section-heading fs-5 fw-bold'>{product?.details?.[key]?.heading}</h5>
+                                        <p className='product-info__section-description fs-6'>{product?.details?.[key]?.description}</p>
                                     </div>
                                 )}
-                               
+
                             </div>
                         ))}
                     </div>
@@ -77,8 +78,8 @@ const ProductInfo = ({ product,loading}) => {
                                     <p key={key} className='d-flex align-items-center justify-content-between product-info__detail-item'>
                                         {loading ? (
                                             <span className='product-info__detail-item skeleton-label w-100'></span>
-                                        ):(label)}
-                                        <span className='product-info__detail-value text-start w-50'>{loading ? ( <span className='product-info__detail-value skeleton-value w-100'></span> ):(product?.details?.information?.[key])}</span>
+                                        ) : (label)}
+                                        <span className='product-info__detail-value text-start w-50'>{loading ? (<span className='product-info__detail-value skeleton-value w-100'></span>) : (product?.details?.information?.[key])}</span>
                                     </p>
                                 ))}
                             </div>
@@ -93,8 +94,8 @@ const ProductInfo = ({ product,loading}) => {
                                     <p key={key} className='d-flex align-items-center justify-content-between product-info__detail-item'>
                                         {loading ? (
                                             <span className='product-info__detail-item skeleton-label w-100'></span>
-                                        ):(label)}
-                                        <span className='product-info__detail-value text-start w-50'>{loading ? ( <span className='product-info__detail-value skeleton-value w-100'></span> ):(product?.details?.information?.[key])}</span>
+                                        ) : (label)}
+                                        <span className='product-info__detail-value text-start w-50'>{loading ? (<span className='product-info__detail-value skeleton-value w-100'></span>) : (product?.details?.information?.[key])}</span>
                                     </p>
                                 ))}
                             </div>
@@ -125,9 +126,17 @@ const ProductInfo = ({ product,loading}) => {
                                 <h4 className='product-info__reviews-title fw-bold'>Reviews</h4>
                                 <button className='product-info__reviews-btn btn border text-muted fw-bold fs-6'>Top Reviews <i class="fa-solid fa-chevron-down"></i></button>
                             </div>
-                            {product?.reviews?.map((review, index) => (
-                                <ReviewItem key={index} review={review} product={product} loading={loading}/>
-                            ))}
+                            {loading ? (
+                                <>
+                                    {[...Array(5)].map((_, index) => (
+                                        <SkeletonReviewItem key={index} />
+                                    ))}
+                                </>
+                            ) : (
+                                product?.reviews?.map((review, index) => (
+                                    <ReviewItem key={index} review={review} product={product} loading={loading} />
+                                ))
+                            )}
                             <button className='product-info__read-more-reviews btn border text-muted fs-6 fw-bold my-4'>Read More Reviews</button>
                             <CreateReview product={product} />
                         </div>
