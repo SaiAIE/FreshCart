@@ -17,7 +17,7 @@ const Product = () => {
         <ProductDetail/>
         <Footer/> 
         <div className='buynow-container'>
-<button className='buy-now'><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
+<button className='buy-now text-white position-fixed'><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
 </div>     
     </div>
   )

@@ -1,24 +1,6 @@
 .custom-alert {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #ffffff;
-    color: black;
-    padding: 8px 10px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-    font-size: 12px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    gap: 10px;
-    min-width: 150px;
-    /* Initially hidden */
     opacity: 0;
     transform: scale(0.8);
-   /* First play fadeIn, then wait, then play fadeOut */
     animation: fadeIn 0.3s ease-in-out forwards, fadeOut 0.3s ease-in-out forwards 3s;
 }
 .custom-alert-mssg{
@@ -33,16 +15,5 @@
     100% {
         opacity: 1;
         transform: scale(1) translateY(0);
-    }
-}
- 
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.8) translateY(20px);
     }
 }

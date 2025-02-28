@@ -1,73 +1,29 @@
 .footer {
   background-color: #f5f7f8;
   padding: 60px 110px;
-  color: #5C6C75;
-  width: 100%;
-  /* border: 2px solid red; */
-}
-
-.footer__content {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 00px;
 }
 
 .footer__column {
-  flex: 1;
   min-width: 170px;
-  /* border: 2px solid red; */
 }
 
 .footer__column-heading {
-  font-size: 16px;
-  font-weight: 600;
   color: #2C3E50;
-  margin-bottom: 15px;
-}
-
-.footer__column-list {
-  list-style: none;
-  padding: 0;
 }
 
 .footer__column-item {
-  margin-bottom: 20px;
   font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
   transition: 0.3s ease-in-out;
 }
 
 .footer__column-item:hover {
   background: none;
   color: #0AAD0A;
+  cursor: pointer;
 }
 
 .footer__bottom {
-  border-top: 1px solid #e0e0e0;
-  padding-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   flex-direction: row;
-  justify-content: center;
-  gap: 10px;
-  padding-top:30px ;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.footer__payment-partners {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  width: 100%;
-  font-size: 14px;
-  font-weight: 600;
-  /* border-bottom: 1px solid #e0e0e0; */
-  color: black;
-
 }
 
 .footer__payment-partner-logo {
@@ -76,9 +32,7 @@
 }
 
 .footer__app-links {
-  display: flex;
   align-items: center;
-  gap: 15px;
   width: 820px;
   font-size: 14px;
   font-weight: 600;  
@@ -91,15 +45,10 @@
 
 .footer__highlight {
   color: #0AAD0A;
-  font-weight: bold;
 }
 .footer__last{
-  display: flex;
   flex-direction: row;
-  width: 100%;
   align-items: center;
-  justify-content: space-between;
-  /* padding-bottom: 80px; */
   padding-top: 10px;
 }
 .footer__last-text{
@@ -113,14 +62,11 @@
   border-radius: 15px;
 }
 .buy-now{
-  /* border: 2px solid red; */
   padding: 10px 15px;
   font-size: 16px;
   font-weight: 650;
   background: #03161f;
-  color: white;
   border-radius: 8px;
-  position: absolute;
   bottom: 50px;
   position: fixed;
   right: 30px;
@@ -146,10 +92,7 @@
   padding: 80px 10px;
 }
 .footer__app-links{
-  padding: 0;
   margin: 0;
-  display: flex;
-  /* border: 2px solid red; */
   padding: 0px 10px;
   width: 100%;
   flex-direction: column;
@@ -182,26 +125,6 @@
   }
 }
 
-/* Skeleton loader for footer columns */
-.skeleton-footer-column {
-  background: linear-gradient(285deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
-  background-size: 100% 100%;
-  animation: shimmer 1.5s infinite linear;
-  height: 600px; /* Adjust based on the size of the footer */
-  background:none;
-  border-radius: 4px;
-  margin-bottom: 20px;
-}
-
-/* Shimmer animation */
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
 .loader-container{
   width: 100%;
   height: 100%;

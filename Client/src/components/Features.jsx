@@ -25,11 +25,11 @@ const Features = () => {
   }, []);
 
   return (
-    <div className='features'>
+    <div className='features w-100 d-flex align-items-center justify-content-between'>
       {loading ? (
-        <div className='features_lists-skeleton'>
+        <div className='features_lists-skeleton gap-1 w-100 d-flex justify-content-between'>
         {[...Array(4)].map((_, index) => (
-          <div key={index} className='features__item features__item-skeleton'>
+          <div key={index} className='features__item features__item-skeleton d-flex align-items-start justify-content-between gap-2 bg-white w-90 rounded-2'>
             <div className='features__item-icon features__item-icon-skeleton'></div>
             <div className='features__item-title features__item-title-skeleton'></div>
             <div className='features__item-description features__item-description-skeleton'></div>
@@ -43,10 +43,10 @@ const Features = () => {
       ) : (
         // Actual content displayed once data is fetched
         featuresData.map((feature, index) => (
-          <div key={index} className='features__item'>
-            <i className={`fa-solid ${feature.icon} features__item-icon`}></i>
+          <div key={index} className='features__item d-flex flex-column justify-content-between gap-2'>
+            <i className={`fa-solid ${feature.icon} features__item-icon fs-2 mb-3`}></i>
             <h3 className='features__item-title'>{feature.title}</h3>
-            <p className='features__item-description'>{feature.description}</p>
+            <p className='features__item-description fs-6 fw-normal text-secondary'>{feature.description}</p>
           </div>
         ))
       )}

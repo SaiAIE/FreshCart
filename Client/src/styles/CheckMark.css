@@ -8,11 +8,6 @@
 }
 
 .checkmark-circle{
-    /* stroke: #28a745;
-    stroke-dasharray: 157;
-    stroke-dashoffset: 157;
-    stroke-width: 3;
-    animation: draw-circle 0.5s ease-out forwards; */
     stroke: none;
     fill: #0AAD0A;
     transform: scale(0);
