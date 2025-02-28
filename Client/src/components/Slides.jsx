@@ -31,8 +31,8 @@ const Slides = () => {
               <img className="slider-container__slide-skeleton-img rounded-4"></img>
               <div className='slider-container__slide-content slider-container__slide-content-skeleton-content position-absolute gap-1 d-flex flex-column align-items-start justify-content-center'>
                 <div className='slider-container__tag skeleton-tag rounded-5'></div>
-                <div className='slider-container__heading skeleton-heading'></div>
-                <div className='slider-container__description skeleton-description '></div>
+                <div className='slider-container__heading skeleton-heading rounded-3'></div>
+                <div className='slider-container__description skeleton-description rounded-2'></div>
                 <div className='slider-container__button skeleton-button rounded-3'></div>
               </div>
             </div>

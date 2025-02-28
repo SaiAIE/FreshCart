@@ -66,14 +66,6 @@
   .daily-best-sells__item-btn:hover{
     background: #0aad0acd;
   }
-  .daily-best-sells__item-timer{
-    /* display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-    padding: 0px 9px;
-    margin-bottom: 10px; */
-  }
   .daily-best-sells__item-timer-unit{
     border: 1px solid #5c6c7550;
     padding: 6px;
