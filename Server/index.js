@@ -14,7 +14,24 @@ const productRoutes = require("./routes/product.routes")
 dotenv.config()
 const app = express()
 
-app.use(cors())
+const allowedOrigins = [
+    'http://localhost:5173', 
+    'https://fresh-cart-1e32.onrender.com'
+  ];
+  
+  const corsOptions = {
+    origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true); 
+      } else {
+        callback(new Error('Not allowed by CORS'));  
+      }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  };
+
+app.use(cors(corsOptions))
 
 app.use(express.json())
 
