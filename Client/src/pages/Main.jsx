@@ -15,6 +15,7 @@ import Footer from '../components/Footer.jsx'
 const Main = () => {
   useEffect(()=>{
     import("./Product.jsx")
+    import("./Products.jsx")
   },[])
   
   return (

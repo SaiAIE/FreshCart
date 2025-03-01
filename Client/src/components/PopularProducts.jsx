@@ -8,17 +8,26 @@ const PopularProducts = () => {
     const [products,setProducts] = useState([])
     const [loading,setLoading] = useState(true)
     const {addToCart} = useCart()
-    const [filteredProducts, setFileteredProducts] = useState([])
-    const [originalOrder,setOriginalOrder] = useState([])
-    const [selectFilters,setSelectedFilters] = useState({
-      category:"",
-      priceRange:"",
-      rating:"",
-      sortOrder:""
-    })
-    const [dropdowns, setDropdowns] = useState({})
+    const [visibleProducts, setVisibleProducts] = useState(10);
 
     const api = import.meta.env.VITE_BACKEND
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setVisibleProducts(8);  // Show 8 products on small screens
+      } else {
+        setVisibleProducts(10); // Show 10 products on large screens
+      }
+    };
+
+    // Set initial value and listen for window resize
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   
     useEffect(()=>{
       const fetchProducts = async()=>{
@@ -29,8 +38,6 @@ const PopularProducts = () => {
             price: parseFloat(product.price.replace("$",""))
           }))
           setProducts(updatedProducts)
-          setFileteredProducts(updatedProducts)
-          setOriginalOrder(updatedProducts)
         }
         catch(err){
           console.log(err.message)
@@ -41,127 +48,15 @@ const PopularProducts = () => {
       fetchProducts()
     },[])
 
-    const handleResetFilters =()=>{
-      setSelectedFilters({
-        category:"",
-        priceRange:"",
-        rating:"",
-        sortOrder:"",
-      })
-      setFileteredProducts(products)
-    }
-
-    const toggleDropdown = (key)=>{
-      setDropdowns(prev => ({...prev, [key]: !prev[key]}))
-    }
-
-    const handleFilterChange = (key,value)=>{
-      setSelectedFilters(prev =>{
-        const newFilters = {...prev, [key]: key === "rating" ? Number(value) : value}
-        applyFilters(newFilters)
-        return newFilters
-      })
-      setDropdowns(prev => ({...prev, [key]: false}))
-    }
-
-    const applyFilters = (filters)=>{
-      let updatedList = [...products]
-      if(filters.category){
-        updatedList = updatedList.filter(product => product.category === selectFilters.category)
-      }
-      if(filters.priceRange){
-        const [min,max]=selectFilters.priceRange.split('-').map(Number)
-        updatedList = updatedList.filter(product => product.price >= min && product.price <= max)
-      }
-      if(filters.rating){
-        const minRating = Number(filters.rating)
-        updatedList = updatedList.filter(product=>
-        {
-          const ratingCount = product.rating.length;
-          return ratingCount >=minRating
-        })
-      }
-
-      if(filters.sortOrder){
-        if(filters.sortOrder === "popular"){
-          updatedList = [...originalOrder]
-        }else{
-          updatedList.sort((a,b)=> filters.sortOrder === "low-to-high" ? a.price - b.price : b.price - a.price)
-        }
-      }
-      setFileteredProducts(updatedList)
-    }
-
-    useEffect(()=> {
-      applyFilters(selectFilters)
-    },[selectFilters,products])
-
-    const handleSort = (order)=>{
-      setSelectedFilters(prev => ({...prev, sortOrder:order}))
-      setDropdowns(prev => ({...prev, sort:false}))
-
-      if(order === "popular"){
-        setFileteredProducts(originalOrder)
-      }
-      else{
-        const sortedList = [...filteredProducts].sort((a,b)=>{
-          return order === "low-to-high" ? a.price - b.price : b.price - a.price
-        })
-        setFileteredProducts(sortedList)
-      }
-    }
-
   return (
     <div className='popular-products'>
+      <div className='d-flex align-items-center justify-content-between'>
       <h2 className='popular-products__title'>Popular Products</h2>
-      <div  className='popular-products__controls mt-3'>
-        <div className='dropdown' onClick={()=> toggleDropdown('category')}>
-          <span className='dropdown-heading'>Category <i class="fa-solid fa-angle-down"></i></span>
-          {dropdowns.category && (
-            <div className='dropdown-menu'>
-              {['Snack & Munchies', "Bakery & Biscuits","Instant Food","Dairy, Bread & Eggs"].map(category => (
-                <div key={category} onClick={()=> handleFilterChange("category",category)}>{category}</div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className='dropdown' onClick={()=> toggleDropdown("priceRange")}>
-          <span className='dropdown-heading'>Price <i class="fa-solid fa-angle-down"></i></span>
-          {dropdowns.priceRange && (
-            <div className='dropdown-menu'>
-              {["0-20","20-50","50-100"].map(range => (
-                <div key={range} onClick={()=> handleFilterChange("priceRange",range)}>${range.replace("-"," - $")}</div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className='dropdown' onClick={()=> toggleDropdown('rating')}>
-          <span className='dropdown-heading'>Rating <i class="fa-solid fa-angle-down"></i></span>
-          {dropdowns.rating && (
-            <div className='dropdown-menu'>
-              {[4,3].map(rating => (
-                <div key= {rating} onClick={()=> handleFilterChange("rating",rating)}>{rating}⭐ & above</div>
-              ))}
-            </div>
-          )}
-        </div>
-        <div className='dropdown' onClick={()=> toggleDropdown("sort")}>
-          <span className='dropdown-heading'>Sort <i class="fa-solid fa-angle-down"></i></span>
-          {dropdowns.sort && (
-            <div className='dropdown-menu'>
-              <div onClick={()=> handleSort("popular")}>Popular <i class="fa-solid fa-star-half-stroke"></i></div>
-              <div onClick={()=> handleSort("low-to-high")}>Low To High <i class="fa-solid fa-arrow-down-wide-short"></i></div>
-              <div onClick={()=> handleSort("high-to-low")}>High To Low <i class="fa-solid fa-arrow-up-wide-short"></i></div>
-            </div>
-          )}
-        </div>
-        <button onClick={handleResetFilters} className='btn bg-success text-white fs-6 fw-bold m-0 py-1 px-2'><i class="fa-solid fa-rotate-right"></i></button>
+      <Link to={`/products`} className='btn btn-success fw-bold'>More <i class="fa-solid fa-arrow-right-long"></i></Link>
       </div>
       <div className='popular-products__list'>
         {loading ? (
-         [...Array(15)].map((_,index)=>(
+         [...Array(5)].map((_,index)=>(
           <div className='popular-products__item skeleton' key={index}>
             <div className='skeleton-img placeholder w-100'></div>
             <div className='skeleton-content mt-3 mb-3'>
@@ -175,9 +70,9 @@ const PopularProducts = () => {
             </div>
           </div>
         ))
-        ):filteredProducts.length > 0 ? (
-          filteredProducts.map((product, index) => (
-            <Link to={`/product/${product._id}`} className='popular-products__item' key={product._id}>
+        ):products.length > 0 ? (
+          products.slice(0,visibleProducts).map((product, index) => (
+            <Link to={`/product/${product._id}`} className={`popular-products__item ${index >= 5 ? "blurred" : ""}`} key={product._id}>
               <div className='popular-products__item-offers'>
                 {product.offer && <span className='popular-products__offer'>{product.offer}</span>}
                 {product.offerValue && <span className='popular-products__offer-value'>{product.offerValue}</span>}
@@ -204,9 +99,13 @@ const PopularProducts = () => {
         ):(
           <div className='no-products d-flex align-items-center flex-column justify-content-between'>
           <p className='fs-5 fw-normal'>No Products Available !!!</p>
-          <button className='btn bg-success text-white fs-6 fw-normal' onClick={handleResetFilters}>Reset Filter <i class="fa-solid fa-rotate-right"></i></button>
+          <button className='btn bg-success text-white fs-6 fw-normal ' onClick={handleResetFilters}>Reset Filter <i class="fa-solid fa-rotate-right"></i></button>
           </div>
         )}
+
+<div className="popular-products__overlay d-flex justify-content-center align-items-center">
+    <Link to={'/products'} className='btn fs-5 fw-semibold rounded w-100 h-100 more__products-btn'>View More Products <i class="fa-solid fa-arrow-right-long"></i></Link>
+  </div>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import ProductDetail from '../components2/ProductDetails.jsx'
 const Product = () => {
     useEffect(()=>{
       import("./Main.jsx")
+      import("./Products.jsx")
     },[])
   return (
     <div className='freshcart'>

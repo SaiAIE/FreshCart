@@ -2,6 +2,7 @@ import React, { useEffect, useState,Suspense } from 'react'
 import {HashRouter as Router, Route, Routes} from "react-router-dom"
 import CustomAlert from './components/CustomAlert'
 import ScrollToTop from './components/ScrollToTop'
+import Products from './pages/Products'
 
 const Page1 = React.lazy(()=> import("./pages/Main"))
 const Page2 = React.lazy(()=> import("./pages/Product"))
@@ -42,6 +43,7 @@ const App = () => {
         <Route path='/' element={<Page1/>}></Route>
         <Route path="/product/:id" element={<Page2/>}></Route>
         <Route path='/productinfo/:id' element={<ProductInfo/>}></Route>
+        <Route path='/products' element={<Products/>}></Route>
       </Routes>
       </Suspense>
     </Router>
