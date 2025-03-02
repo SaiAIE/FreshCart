@@ -37,21 +37,21 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="searchbar">
+    <div className="searchbar d-flex align-items-center justify-content-between w-100">
       <>
-        <div className={`searchbar__sidebar ${isSidebarOpen ? 'searchbar__sidebar--open' : ''}`}>
-          <div className='searchbar__sidebar-top'>
+        <div className={`searchbar__sidebar ${isSidebarOpen ? 'searchbar__sidebar--open' : ''} position-fixed top-0 w-100 h-100 bg-white `}>
+          <div className='searchbar__sidebar-top p-0 m-0 d-flex flex-row align-items-center justify-content-between'>
             <img src={logo} alt="" className='searchbar__logo searchbar__logo--mobile' />
-            <div className='searchbar__close-icon' onClick={toggleSidebar}>
+            <div className='searchbar__close-icon text-end' onClick={toggleSidebar}>
               <i className='fa-solid fa-xmark'></i>
             </div>
           </div>
 
           <div className='searchbar__navbar-main'>
             <div className='searchbar__navbar-mobile'>
-              <div className='searchbar__input'>
+              <div className='searchbar__input d-flex align-items-center position-relative rounded'>
                 <input type="input" placeholder='Search for products' className='searchbar__input-field' />
-                <i className='fa-solid fa-magnifying-glass'></i>
+                <i className='fa-solid fa-magnifying-glass position-absolute text-black'></i>
               </div>
 
               {loading && (
@@ -67,34 +67,34 @@ const SearchBar = () => {
               )}
 
               {dropdownData.map((item, index) => (
-                <div className='searchbar__dropdown' key={index}>
-                  <div className={`searchbar__dropdown-heading ${item.className || ''}`}>
+                <div className='searchbar__dropdown position-relative' key={index}>
+                  <div className={`searchbar__dropdown-heading ${item.className || ''} border-0 rounded`}>
                     {item.heading} {item.icon && <i className={item.icon}></i>}
                   </div>
                   {item.options && (
-                    <div className="searchbar__dropdown-options">
+                    <div className="searchbar__dropdown-options position-absolute top-100 bg-white rounded-1 start-50 flex-row">
                       {item.options.map((option, idx) => (
-                        <p key={idx} className='searchbar__dropdown-option'>{option}</p>
+                        <p key={idx} className='searchbar__dropdown-option m-0'>{option}</p>
                       ))}
                     </div>
                   )}
                   {item.heading === "Mega menu" && (
-                    <div className="searchbar__dropdown-options searchbar__dropdown-options--mega">
+                    <div className="searchbar__dropdown-options searchbar__dropdown-options--mega flex-column align-items-start justify-content-evenly position-absolute bg-white">
                       {item.megaOptions.map((col, idx) => (
-                        <div className="searchbar__menu-column" key={idx}>
+                        <div className="searchbar__menu-column d-flex flex-column justify-content-evenly" key={idx}>
                           <h4 className='searchbar__menu-heading'>{col.title}</h4>
-                          <ul className='searchbar__menu-lists'>
+                          <ul className='searchbar__menu-lists list-unstyled d-flex flex-column p-0 justify-content-evenly position-relative'>
                             {col.items.map((listItem, id) => (
-                              <li key={id} className='searchbar__menu-item'>{listItem}</li>
+                              <li key={id} className='searchbar__menu-item rounded-1'>{listItem}</li>
                             ))}
                           </ul>
                         </div>
                       ))}
                       {item.offer && (
-                        <div className="searchbar__menu-column">
+                        <div className="searchbar__menu-column d-flex flex-column justify-content-evenly position-relative">
                           <img src={item.offer.imgSrc} alt="" className="searchbar__megamenu-img" />
                           <h2 className="searchbar__offer" dangerouslySetInnerHTML={{ __html: item.offer.text }} />
-                          <button className="searchbar__offer-btn">{item.offer.buttonText}</button>
+                          <button className="searchbar__offer-btn border-0 fw-semibold text-white rounded position-absolute">{item.offer.buttonText}</button>
                         </div>
                       )}
                     </div>
@@ -106,26 +106,26 @@ const SearchBar = () => {
         </div>
       </>
 
-      <div className='searchbar__left'>
+      <div className='searchbar__left d-flex flex-row align-items-center justify-content-between'>
         <img src={logo} alt="" className='searchbar__logo' />
-        <div className='searchbar__main'>
-          <div className='searchbar__input'>
-            <input type="input" placeholder='Search for products' className='searchbar__input-field' />
-            <i className="fa-solid fa-magnifying-glass"></i>
+        <div className='searchbar__main align-items-center'>
+          <div className='searchbar__input position-relative'>
+            <input type="input" placeholder='Search for products' className='searchbar__input-field rounded-1 text-secondary border border-outline-secondary' />
+            <i className="fa-solid fa-magnifying-glass text-black position-absolute"></i>
           </div>
-          <button className='searchbar__location-btn'>
+          <button className='searchbar__location-btn rounded'>
             <i className="fa-solid fa-location-dot"></i> Location
           </button>
         </div>
       </div>
 
-      <div className='searchbar__options'>
-        <i className="fa-regular fa-heart searchbar__options-icon">
-          <span className='searchbar__options-count'>4</span>
+      <div className='searchbar__options border-0 d-flex text-secondary'>
+        <i className="fa-regular fa-heart searchbar__options-icon position-relative">
+          <span className='searchbar__options-count position-absolute rounded-circle fw-semibold text-white'>4</span>
         </i>
         <i className="fa-regular fa-user searchbar__options-icon"></i>
-        <i className="fa-solid fa-cart-shopping searchbar__options-icon" onClick={()=>setCartOpen(true)}>
-          <span className='searchbar__options-count'>{cart.length}</span>
+        <i className="fa-solid fa-cart-shopping searchbar__options-icon position-relative" onClick={()=>setCartOpen(true)}>
+          <span className='searchbar__options-count position-absolute rounded-circle fw-semibold text-white'>{cart.length}</span>
         </i>
         <Cart isOpen={cartOpen} onClose={()=>setCartOpen(false)}/>
         <svg
