@@ -6,7 +6,7 @@ import ProductInfo from './ProductInfo';
 import { FiShoppingBag } from "react-icons/fi";
 import RelatedItems from './RelatedItems';
 import { useCart } from '../contexts/CartContext';
-import Skeleton from 'react-loading-skeleton';
+import {Link} from 'react-router-dom';
 
 const ProductDetail = () => {
   const { addToCart } = useCart()
@@ -63,17 +63,11 @@ const ProductDetail = () => {
     img.style.transform = "scale(1)";
   };
 
-  // if (loading) { 
-  //   return <div>Loading...</div>; 
-  // } 
-
-  // if (error) { 
-  //   return <div>{error}</div>; 
-  // }
-
   return (
     <div className='product-details d-flex justify-content-between flex-column w-100'>
-      <p><span className='product-details__breadcrumb text-success'>Home / Shop /</span> {product?.name}</p>
+      <p>
+        <Link to="/" className='product-details__breadcrumb text-success text-decoration-none'>Home</Link> / <Link to="/products" className='product-details__breadcrumb text-success text-decoration-none'>Shop</Link> / {product?.name}
+      </p>
       <div className='product-details__main d-flex flex-column flex-md-row'>
         <div className='product-details__left'>
           <div className='product-details__main-image' onMouseMove={zoomImage} onMouseLeave={resetZoom}>
