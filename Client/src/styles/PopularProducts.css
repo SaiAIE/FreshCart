@@ -6,7 +6,6 @@
 
 .popular-products__list{
   width: 100%;
-  /* border: 2px solid red; */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); /* Creates a responsive grid with flexible item width */
   gap: 10px;
@@ -176,7 +175,7 @@
   bottom: 25%;
   left: 50%;
   transform: translate(-50%,50%);
-    height: 380px; 
+    height: 400px; 
     background: rgba(255, 255, 255, 0.405);
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
@@ -209,6 +208,11 @@
       padding: 0px 20px;
       width: 100%;
   }
+.popular-products__overlay{
+height: 600px;
+bottom: 20%;
+
+}
 .popular-products__controls{
 gap: 15px;
 }

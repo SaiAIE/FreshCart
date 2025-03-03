@@ -18,7 +18,7 @@ const Cart = ({ isOpen, onClose }) => {
                         Shop Cart <br />
                         <span className='text-muted fs-6'>Location in Bengaluru</span>
                     </h5>
-                    <button className='btn text-muted fw-5' onClick={onClose}>
+                    <button data-testid="close-btn" className='btn text-muted fw-5' onClick={onClose}>
                         <i className="fa-solid fa-xmark fs-4"></i>
                     </button>
                 </div>
