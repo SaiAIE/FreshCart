@@ -10,6 +10,8 @@ const PopularProducts = () => {
   const { addToCart } = useCart()
   const [visibleProducts, setVisibleProducts] = useState(10);
 
+  console.log(products)
+
   const api = import.meta.env.VITE_BACKEND
 
   useEffect(() => {
