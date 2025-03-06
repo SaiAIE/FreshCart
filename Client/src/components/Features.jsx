@@ -34,12 +34,12 @@ const Features = () => {
           </div>
         ))}</div>
       ) : error ? (
-        // Error message displayed if fetching fails
+        
         <div className='d-flex w-100 align-item-center justify-content-center'>
         <h2 className='fs-5 fw-normal text-center'>{error}</h2>
         </div>
       ) : (
-        // Actual content displayed once data is fetched
+        
         featuresData.map((feature, index) => (
           <div key={index} className='features__item d-flex flex-column justify-content-between gap-2'>
             <i className={`fa-solid ${feature.icon} features__item-icon fs-2 mb-3`}></i>

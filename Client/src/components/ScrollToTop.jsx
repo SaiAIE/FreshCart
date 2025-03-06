@@ -13,10 +13,10 @@ const ScrollToTop = () => {
     useEffect(() => {
       const scrollAfterNavbar = () => {
           if (pathname === "/") {
-              // If on homepage, scroll to top directly
+              
               window.scrollTo({ top: 0, behavior: "smooth" });
           } else if (navbarRef.current && searchbarRef.current && topbarRef.current) {
-              // If on other pages, scroll after Topbar, Navbar & Searchbar
+              
               const navbarHeight = navbarRef.current.offsetHeight;
               const searchbarHeight = searchbarRef.current.offsetHeight;
               const topbarHeight = topbarRef.current.offsetHeight;
@@ -24,7 +24,7 @@ const ScrollToTop = () => {
 
               window.scrollTo({ top: totalHeight, behavior: "smooth" });
           } else {
-              window.scrollTo({ top: 0, behavior: "smooth" }); // Fallback
+              window.scrollTo({ top: 0, behavior: "smooth" }); 
           }
       };
 
@@ -33,7 +33,6 @@ const ScrollToTop = () => {
 
     return (
         <>
-            {/* Attach refs to components */}
             <div ref={topbarRef}>
                 <Topbar />
             </div>

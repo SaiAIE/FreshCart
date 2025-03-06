@@ -4,30 +4,42 @@ import "../styles/Slides.css"
 
 const Slides = () => {
   const [sliderData, setSliderData] = useState([])
-  const [loading, setLoading] = useState(true); // State to track loading status
-  const api = import.meta.env.VITE_BACKEND
+  const [loading, setLoading] = useState(true); 
+  const [activeIndex, setActiveIndex] = useState(0)
+  const slideInterval = 3000
 
   useEffect(() => {
     const fetchSliders = async () => {
       try {
         const response = await getSliders()
         setSliderData(response.data)
-        setLoading(false); // Data is loaded, set loading to false
+        setLoading(false); 
       }
       catch (err) {
         console.log(err.message)
-        setLoading(false); // Set loading to false even on error
+        setLoading(false); 
       }
     }
     fetchSliders()
   }, [])
 
+  useEffect(()=>{
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex)=>(prevIndex + 1)% sliderData.length)
+    }, slideInterval);
+    return ()=> clearInterval(interval)
+  },[sliderData.length])
+
+  const handleDotClick = (index)=>{
+    setActiveIndex(index)
+  }
+
   return (
     <div className='slider-container position-relative w-100 overflow-hidden'>
-      <div className='slider-container__wrapper d-flex'>
+      <div className='slider-container__wrapper d-flex' style={{width:`${sliderData.length * 100}%`,transform:`translateX(-${activeIndex* (100/sliderData.length)}%)`,transition:"transform 0.5s ease-in-out"}}>
         {loading ? (
           [...Array(2)].map((_, index) => (
-            <div className='slider-container__slide skeleton-slide w-50 position-relative overflow-hidden d-flex flex-column align-items-center justify-content-center' key={index}>
+            <div data-testid="loading-skelton" className='slider-container__slide skeleton-slide w-50 position-relative overflow-hidden d-flex flex-column align-items-center justify-content-center' key={index}>
               <img className="slider-container__slide-skeleton-img rounded-4"></img>
               <div className='slider-container__slide-content slider-container__slide-content-skeleton-content position-absolute gap-1 d-flex flex-column align-items-start justify-content-center'>
                 <div className='slider-container__tag skeleton-tag rounded-5'></div>
@@ -39,10 +51,9 @@ const Slides = () => {
             </div>
           ))
         ) : (
-          // Render actual slides once data is fetched
           sliderData.map((slide, index) => (
             <div className='slider-container__slide w-50 position-relative overflow-hidden d-flex flex-column align-items-center justify-content-center' key={index}>
-              <img src={slide.img} alt="" className='rounded-4'/>
+              <img data-testid="slide-img" src={slide.img} alt="" className='rounded-4'/>
               <div className='slider-container__slide-content position-absolute gap-1 d-flex flex-column align-items-start justify-content-center'>
                 <span className='slider-container__tag rounded-5 bg-warning'>{slide.tag}</span>
                 <h2 className='slider-container__heading m-0 fw-bold'>{slide.heading}</h2>
@@ -55,15 +66,18 @@ const Slides = () => {
           ))
         )}
       </div>
-      <div className='slider-container__dots position-absolute d-flex gap-2'>
+      {!loading && sliderData.length > 1 && (
+        <div className='slider-container__dots position-absolute d-flex gap-2'>
         {sliderData.map((_, index) => (
           <span
             key={index}
-            className='slider-container__dot rounded-circle'
-            onClick={() => console.log(`Slide ${index} clicked`)}
+            className={'slider-container__dot rounded-circle ${index === activeIndex ? "active-dot":""} '}
+            data-testid="slider-dot"
+            onClick={()=>handleDotClick(index)}
           ></span>
         ))}
       </div>
+      )}
     </div>
   );
 };

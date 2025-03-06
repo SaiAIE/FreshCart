@@ -10,7 +10,7 @@ jest.mock("../../api/api.service", () => ({
 
 describe("Footer Component", () => {
   test("renders loading state initially", async () => {
-    getFooter.mockImplementation(() => new Promise(() => {})); // Keeps loading state active
+    getFooter.mockImplementation(() => new Promise(() => {}));
     await act(async () => {
       render(<Footer />);
     });

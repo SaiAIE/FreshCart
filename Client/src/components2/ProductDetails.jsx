@@ -83,7 +83,7 @@ const ProductDetail = () => {
           </div>
           <div className='product-details__thumbnail-container'>
             {loading ? (
-              [...Array(4)].map((_, index) => (  // Assuming 5 thumbnails for the skeleton
+              [...Array(4)].map((_, index) => (  
                 <div key={index} className="product-details__thumbnail-skeleton" />
               ))
             ) : (product?.image.map((img, index) => (
@@ -150,7 +150,7 @@ const ProductDetail = () => {
           <div className='product-details__quantity-lists d-flex my-3'>
             {loading ? (
               [...Array(3)].map((_, index) => (
-                <div key={index} className="skeleton-quantity"></div> // Skeleton for quantity items
+                <div key={index} className="skeleton-quantity"></div> 
               ))
             ) : (
               product?.details?.quantity.map((qnty, item) => (

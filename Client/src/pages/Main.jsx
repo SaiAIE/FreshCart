@@ -1,9 +1,4 @@
 import React, { useEffect } from 'react'
-// import "../Freshcart.css"
-
-import Topbar from '../components/Topbar.jsx'
-import SearchBar from '../components/SearchBar.jsx'
-import Navbar from "../components/Navbar.jsx"
 import Slides from '../components/Slides.jsx'
 import FeaturesProducts from '../components/FeaturesProducts.jsx'
 import Groceries from '../components/Groceries.jsx';

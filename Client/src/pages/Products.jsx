@@ -1,7 +1,4 @@
 import React,{useEffect} from 'react'
-import Topbar from '../components/Topbar'
-import SearchBar from '../components/SearchBar'
-import Navbar from '../components/Navbar'
 import Products1 from '../components/Products'
 import Footer from '../components/Footer'
 

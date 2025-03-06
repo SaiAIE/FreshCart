@@ -1,10 +1,10 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom"; // Ensure Jest DOM matchers are available
+import "@testing-library/jest-dom";
 import Cart from "../../components/Cart";
 import { useCart } from "../../contexts/CartContext";
 import React from "react";
 
-jest.mock("../../contexts/CartContext"); // ✅ Mock useCart hook
+jest.mock("../../contexts/CartContext");
 
 describe("Cart Component", () => {
     let mockCart, mockRemoveFromCart, mockIncrementQuantity, mockDecrementQuantity, mockOnClose;
@@ -16,7 +16,7 @@ describe("Cart Component", () => {
                 name: "Haldiram's Sev Bhujia",
                 image: ["https://freshcart-next-js.vercel.app/images/products/product-img-1.jpg"],
                 price: 21.6,
-                originalPrice: "$24.00", // ✅ Ensure format matches UI
+                originalPrice: "$24.00",
                 rating: "★★★★★",
                 offer: "Sale",
                 offerValue: "10%",
@@ -32,13 +32,11 @@ describe("Cart Component", () => {
             }
         ];
 
-        // ✅ Use Jest `jest.fn()`
         mockRemoveFromCart = jest.fn();
         mockIncrementQuantity = jest.fn();
         mockDecrementQuantity = jest.fn();
         mockOnClose = jest.fn();
 
-        // ✅ Mock useCart hook
         useCart.mockReturnValue({
             cart: mockCart,
             removeFromCart: mockRemoveFromCart,
@@ -59,9 +57,6 @@ describe("Cart Component", () => {
 
     test("displays cart items when cart is not empty", () => {
         render(<Cart isOpen={true} onClose={mockOnClose} />);
-
-        // Debugging Step: Uncomment if needed
-        // screen.debug();
 
         expect(screen.getByText("Haldiram's Sev Bhujia")).toBeInTheDocument();
         

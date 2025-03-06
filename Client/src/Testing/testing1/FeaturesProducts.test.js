@@ -10,7 +10,7 @@ jest.mock("../../api/api.service", () => ({
 
 describe("FeaturesProducts Component", () => {
   test("renders loading skeletons initially", async () => {
-    getCategories.mockImplementation(() => new Promise(() => {})); // Ensures loading state persists
+    getCategories.mockImplementation(() => new Promise(() => {}));
     await act(async () => {
       render(<FeaturesProducts />);
     });

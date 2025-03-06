@@ -4,7 +4,6 @@ import "../styles/Groceries.css";
 
 const Groceries = () => {
   const [groceriesData,setGroceriesData] = useState([])
-  const api = import.meta.env.VITE_BACKEND
 
   useEffect(()=>{
     const fetchGroceries = async()=>{

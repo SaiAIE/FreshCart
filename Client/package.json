@@ -39,11 +39,5 @@
     "jest-environment-jsdom": "^29.7.0",
     "react-scripts": "^5.0.1",
     "vite": "^6.1.0"
-  },
-  "jest": {
-  "moduleNameMapper": {
-    "\\.(css|less|scss|sass)$": "identity-obj-proxy"
-  },
-  "testEnvironment": "jsdom"
-}
+  }
 }

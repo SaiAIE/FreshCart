@@ -3,7 +3,7 @@ import "../../styles2/Reviews.css"
 
 const ReviewItem = ({ index, review, product }) => {
 
-  // Function to format the date to "30 December 2022"
+  
   const formatReviewDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-GB", {
@@ -13,7 +13,7 @@ const ReviewItem = ({ index, review, product }) => {
     });
   };
 
-  // Function to render the verification status
+  
   const renderVerificationStatus = (isVerified) => {
     return isVerified ? (
       <span style={{ color: '#0AAD0A', fontSize: "13px" }}>Verified Purchase</span>

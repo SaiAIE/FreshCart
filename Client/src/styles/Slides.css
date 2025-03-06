@@ -5,7 +5,7 @@
     display: flex;
     width: 200%;
     transition: 1s ease-in-out;
-    animation: slideAnimation 8s infinite;
+    /* animation: slideAnimation 8s infinite; */
   }
   .slider-container__slide{
     margin: 40px 0px;
