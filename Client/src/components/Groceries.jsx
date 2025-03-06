@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import axios from "axios"
-import { groceriesData } from '../assets/data';
+import { getGroceries } from '../api/api.service';
 import "../styles/Groceries.css";
 
 const Groceries = () => {
@@ -10,7 +9,7 @@ const Groceries = () => {
   useEffect(()=>{
     const fetchGroceries = async()=>{
       try{
-        const response = await axios.get(`${api}/api/grocery/`)
+        const response = await getGroceries()
         setGroceriesData(response.data)
       }
       catch(err){

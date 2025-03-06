@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
+import { getDailySells } from '../api/api.service';
 import "../styles/DailySells.css";
 
 const DailyBestSells = () => {
   const [dailySellsData, setDailySells] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const api = import.meta.env.VITE_BACKEND;
 
   useEffect(() => {
     const fetchDailySells = async () => {
       try {
-        const response = await axios.get(`${api}/api/dailySells/`);
+        const response = await getDailySells()
         setDailySells(response.data);
       } catch (err) {
         console.log(err.message);
@@ -30,7 +29,7 @@ const DailyBestSells = () => {
         {loading ? (
           // Skeleton Loader while loading data
           [...Array(4)].map((_, index) => (
-            <div className='daily-best-sells__item daily-best-sells__item-skeleton d-flex align-items-center justify-content-center w-100 p-2 rounded' key={index}>
+            <div data-testid = "loading-skeleton" className='daily-best-sells__item daily-best-sells__item-skeleton d-flex align-items-center justify-content-center w-100 p-2 rounded' key={index}>
               <div className='daily-best-sells__item-content'>
                 <div className='daily-best-sells__item-img-skeleton w-90 rounded'></div>
                 <div className='daily-best-sells__item-description-skeleton'>
@@ -53,7 +52,7 @@ const DailyBestSells = () => {
                 <div className='daily-best-sells__item-content'>
                   <img src={item.img} alt={item.title} className='daily-best-sells__item-img-1 rounded-3 object-fit-cover w-100' />
                   <div className='daily-best-sells__item-description position-absolute text-white d-flex flex-column align-items-start gap-2 py-3'>
-                    <h3 className='daily-best-sells__item-title fs-4 fw-bold'>{item.title}</h3>
+                    <h3 className='daily-best-sells__item-title fs-4 fw-bold' role="heading" aria-level="3">{item.title}</h3>
                     <p className='daily-best-sells__item-desc fs-6'>{item.description}</p>
                     <button className='daily-best-sells__item-btn bg-success text-white border-0 rounded cursor-pointer fw-semibold py-2 px-3 fs-6 my-2'>
                       {item.buttonText} <i className="fa-solid fa-arrow-right"></i>

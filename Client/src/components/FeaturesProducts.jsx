@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
+import { getCategories } from '../api/api.service';
 import "../styles/FeaturedProducts.css";
 
 const FeaturesProducts = () => {
   const [categoriesData, setCategoriesData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const api = import.meta.env.VITE_BACKEND;
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(`${api}/api/category/`);
+        const response = await getCategories();
         setCategoriesData(response.data);
       } catch (err) {
         console.log(err.message);
@@ -48,7 +47,7 @@ const FeaturesProducts = () => {
         {loading ? (
           // Skeleton loader while data is being fetched
           [...Array(12)].map((_, index) => (
-            <div className='features-products__card features-products__card-skeleton d-flex flex-column align-items-center justify-content-evenly p-4 gap-2 fs-6 fw-normal text-muted text-center rounded bg-white d-flex flex-column align-items-center justify-content-between' key={index}>
+            <div data-testid="features-products-loading" className='features-products__card features-products__card-skeleton d-flex flex-column align-items-center justify-content-evenly p-4 gap-2 fs-6 fw-normal text-muted text-center rounded bg-white d-flex flex-column align-items-center justify-content-between' key={index}>
               <div className='features-products__card-img features-products__card-img-skeleton rounded'></div>
               <div className='features-products__card-title features-products__card-title-skeleton rounded'></div>
             </div>

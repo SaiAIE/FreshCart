@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from "axios"
+import { getProducts } from '../api/api.service';
 import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext';
 import "../styles2/RelatedItems.css"
@@ -8,13 +8,12 @@ const RelatedItems = () => {
   const { addToCart } = useCart()
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
-  const api = import.meta.env.VITE_BACKEND
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`${api}/api/product/`)
-        setProducts(response.data)
+        const response = await getProducts()
+        setProducts(response)
         setLoading(false)
       }
       catch (err) {

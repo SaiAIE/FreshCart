@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios"
+import { getProducts } from '../api/api.service';
 import { Link } from "react-router-dom"
 import { useCart } from '../contexts/CartContext';
 import "../styles/PopularProducts.css";
@@ -9,10 +9,6 @@ const PopularProducts = () => {
   const [loading, setLoading] = useState(true)
   const { addToCart } = useCart()
   const [visibleProducts, setVisibleProducts] = useState(10);
-
-  console.log(products)
-
-  const api = import.meta.env.VITE_BACKEND
 
   useEffect(() => {
     const handleResize = () => {
@@ -33,15 +29,11 @@ const PopularProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`${api}/api/product/`)
-        const updatedProducts = response.data.map(product => ({
-          ...product,
-          price: parseFloat(product.price.replace("$", ""))
-        }))
+        const updatedProducts = await getProducts()
         setProducts(updatedProducts)
       }
       catch (err) {
-        console.log(err.message)
+        console.log(err)
       } finally {
         setLoading(false)
       }
@@ -100,7 +92,7 @@ const PopularProducts = () => {
         ) : (
           <div className='no-products d-flex align-items-center flex-column justify-content-between'>
             <p className='fs-5 fw-normal'>No Products Available !!!</p>
-            <button className='btn bg-success text-white fs-6 fw-normal ' onClick={handleResetFilters}>Reset Filter <i class="fa-solid fa-rotate-right"></i></button>
+            <button className='btn bg-success text-white fs-6 fw-normal '>Reset Filter <i class="fa-solid fa-rotate-right"></i></button>
           </div>
         )}
 

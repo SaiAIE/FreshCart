@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
+import { getFooter } from '../api/api.service';
 import "../styles/Footer.css";
 
 const Footer = () => {
   const [footerData, setFooterData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const api = import.meta.env.VITE_BACKEND;
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchFooter = async () => {
       try {
-        const response = await axios.get(`${api}/api/footer/`);
+        const response = await getFooter();
+        if (!response || !response.data) {
+          throw new Error("Invalid response data");
+        }
         setFooterData(response.data);
       } catch (err) {
         console.log(err.message);
+        setError(true);
       } finally{
         setLoading(false);
       }
@@ -26,7 +30,11 @@ const Footer = () => {
       <div className="footer__content d-flex justify-content-between flex-wrap gap-0">
         {loading ? (
           <div className='loader-container'>
-          <div className="loader"></div>
+            <div className="loader"></div>
+          </div>
+        ) : error ? (
+          <div className='error-message text-center w-100'>
+            <h4>Failed to load footer content</h4>
           </div>
         ) : (
           footerData.map((column, index) => (

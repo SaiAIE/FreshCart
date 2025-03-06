@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import axios from "axios"
+import { getProducts } from '../api/api.service';
 import {Link} from "react-router-dom"
 import { useCart } from '../contexts/CartContext';
 import "../styles/PopularProducts.css";
@@ -17,17 +17,11 @@ const Products = () => {
       sortOrder:""
     })
     const [dropdowns, setDropdowns] = useState({})
-
-    const api = import.meta.env.VITE_BACKEND
   
     useEffect(()=>{
       const fetchProducts = async()=>{
         try{
-          const response = await axios.get(`${api}/api/product/`)
-          const updatedProducts = response.data.map(product => ({
-            ...product,
-            price: parseFloat(product.price.replace("$",""))
-          }))
+          const updatedProducts = await getProducts()
           setProducts(updatedProducts)
           setFileteredProducts(updatedProducts)
           setOriginalOrder(updatedProducts)

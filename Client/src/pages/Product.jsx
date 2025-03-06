@@ -12,9 +12,6 @@ const Product = () => {
     },[])
   return (
     <div className='freshcart'>
-        <Topbar/>
-        <SearchBar/>
-        <Navbar/>
         <ProductDetail/>
         <Footer/> 
         <div className='buynow-container'>

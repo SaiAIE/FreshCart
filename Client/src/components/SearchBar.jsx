@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import { useCart } from '../contexts/CartContext';
+import { getDropdowns } from '../api/api.service';
 import Cart from "./Cart"
-import axios from "axios"
 import logo from "../assets/logo.svg";
 import "../styles/Searchbar.css";
 
@@ -13,12 +13,10 @@ const SearchBar = () => {
   const {cart} = useCart()
   const [cartOpen, setCartOpen] = useState(false)
 
-  const api = import.meta.env.VITE_BACKEND
-
   useEffect(()=>{
     const fetchDropdown = async()=>{
       try{
-        const response = await axios.get(`${api}/api/dropdowns/`)
+        const response = await getDropdowns()
         setDropdownData(response.data)
       }
       catch(err){

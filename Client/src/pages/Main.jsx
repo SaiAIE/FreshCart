@@ -20,9 +20,6 @@ const Main = () => {
   
   return (
     <div className='freshcart'>
-        <Topbar/>
-        <SearchBar/>
-        <Navbar/>
         <Slides/>
         <FeaturesProducts/>
         <Groceries/>

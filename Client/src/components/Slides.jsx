@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { getSliders } from '../api/api.service';
 import "../styles/Slides.css"
-import axios from "axios"
 
 const Slides = () => {
   const [sliderData, setSliderData] = useState([])
@@ -10,7 +10,7 @@ const Slides = () => {
   useEffect(() => {
     const fetchSliders = async () => {
       try {
-        const response = await axios.get(`${api}/api/slider/`)
+        const response = await getSliders()
         setSliderData(response.data)
         setLoading(false); // Data is loaded, set loading to false
       }

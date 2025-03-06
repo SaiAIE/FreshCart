@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { dropdownData } from '../assets/data';
-import axios from "axios";
+import { getDropdowns } from '../api/api.service';
 import "../styles/Navbar.css";
 
 const Navbar = () => {
@@ -10,7 +9,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchDropdown = async () => {
       try {
-        const response = await axios.get(`${api}/api/dropdowns/`);
+        const response = await getDropdowns();
         setDropdownData(response.data);
       } catch (err) {
         console.log(err.message);

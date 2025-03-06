@@ -7,6 +7,7 @@ import { FiShoppingBag } from "react-icons/fi";
 import RelatedItems from './RelatedItems';
 import { useCart } from '../contexts/CartContext';
 import {Link} from 'react-router-dom';
+import { getProductById } from '../api/api.service';
 
 const ProductDetail = () => {
   const { addToCart } = useCart()
@@ -20,20 +21,23 @@ const ProductDetail = () => {
   const api = import.meta.env.VITE_BACKEND;
 
   useEffect(() => {
-    axios
-      .get(`${api}/api/product/${id}`)
-      .then((response) => {
-        setProduct(response.data);
-        if (response.data.image && response.data.image.length > 0) {
-          setMainImage(response.data.image[0]);
+    const fetchProduct = async ()=>{
+      try{
+        const data = await getProductById(id)
+        setProduct(data)
+
+        if(data.image?.length > 0){
+          setMainImage(data.image[0])
         }
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError('Failed to fetch product data');
-        setLoading(false);
-      });
-  }, []);
+      }
+      catch(err){
+        setError(err)
+      }
+      finally{
+        setLoading(false)
+      }}
+      fetchProduct()
+  }, [id]);
 
   const handleShareClick = (id) => {
     const shareUrl = `/#/product/${id}`;
