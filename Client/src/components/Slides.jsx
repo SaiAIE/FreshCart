@@ -36,7 +36,7 @@ const Slides = () => {
 
   return (
     <div className='slider-container position-relative w-100 overflow-hidden'>
-      <div className='slider-container__wrapper d-flex' style={{width:`${sliderData.length * 100}%`,transform:`translateX(-${activeIndex* (100/sliderData.length)}%)`,transition:"transform 0.5s ease-in-out"}}>
+      <div className='slider-container__wrapper d-flex' style={{width:loading?"200%":`${sliderData.length * 100}%`,transform:`translateX(-${activeIndex* (100/sliderData.length)}%)`,transition:"transform 0.5s ease-in-out"}}>
         {loading ? (
           [...Array(2)].map((_, index) => (
             <div data-testid="loading-skelton" className='slider-container__slide skeleton-slide w-50 position-relative overflow-hidden d-flex flex-column align-items-center justify-content-center' key={index}>
