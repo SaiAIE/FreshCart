@@ -4,5 +4,5 @@ export default {
       "\\.(css|less|scss|sass)$": "identity-obj-proxy",
     },
     testEnvironment: "jsdom",
-  };
-  
+    setupFilesAfterEnv: ["<rootDir>/src/Testing/setupTests.js"], // Add this line
+};

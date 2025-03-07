@@ -4,12 +4,12 @@ import "../styles/Navbar.css";
 
 const Navbar = () => {
   const [dropdownData, setDropdownData] = useState([]);
-  const api = import.meta.env.VITE_BACKEND;
 
   useEffect(() => {
     const fetchDropdown = async () => {
       try {
         const response = await getDropdowns();
+        console.log(response.data)
         setDropdownData(response.data);
       } catch (err) {
         console.log(err.message);
@@ -19,11 +19,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="navbar flex-row w-100 align-items-start justify-content-start border-bottom border-outline-secondary">
+    <div role='navigation' className="navbar flex-row w-100 align-items-start justify-content-start border-bottom border-outline-secondary">
       <div className="navbar__container d-flex align-items-start justify-content-between">
-        {dropdownData.map((item, index) => (
+        {dropdownData.length>0 && dropdownData.map((item, index) => (
           <div className="navbar__dropdown position-relative" key={index}>
-            <div className={`navbar__dropdown-heading ${item.className || ''} border-0 fs-6 rounded`}>
+            <div data-testid={`dropdown-heading-${index}`} className={`navbar__dropdown-heading ${item.className || ''} border-0 fs-6 rounded`}>
               {item.heading} {item.icon && <i className={item.icon}></i>}
             </div>
 

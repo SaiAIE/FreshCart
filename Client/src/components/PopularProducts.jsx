@@ -45,12 +45,12 @@ const PopularProducts = () => {
     <div className='popular-products'>
       <div className='d-flex align-items-center justify-content-between'>
         <h2 className='popular-products__title'>Popular Products</h2>
-        <Link to={`/products`} className='btn btn-success fw-bold'>More <i class="fa-solid fa-arrow-right-long"></i></Link>
+        <Link to={`/products`} className='btn btn-success fw-bold' data-testid="product-item">More <i className="fa-solid fa-arrow-right-long"></i></Link>
       </div>
       <div className='popular-products__list'>
         {loading ? (
           [...Array(10)].map((_, index) => (
-            <div className='popular-products__item skeleton' key={index}>
+            <div className='popular-products__item skeleton' key={index} data-testid="skeleton">
               <div className='skeleton-img placeholder w-100'></div>
               <div className='skeleton-content mt-3 mb-3'>
                 <div className='placeholder w-50 mb-2'></div>
@@ -63,9 +63,9 @@ const PopularProducts = () => {
               </div>
             </div>
           ))
-        ) : products.length > 0 ? (
+        ) : products && products.length > 0 ? (
           products.slice(0, visibleProducts).map((product, index) => (
-            <Link to={`/product/${product._id}`} className='popular-products__item d-flex flex-column position-relative rounded-2 h-auto text-black text-decoration-none w-100' key={product._id}>
+            <Link to={`/product/${product._id}`} className='popular-products__item d-flex flex-column position-relative rounded-2 h-auto text-black text-decoration-none w-100' key={product._id} data-testid="product-item">
               <div className='popular-products__item-offers d-flex flex-column align-items-start justify-content-between position-absolute'>
                 {product.offer && <span className='popular-products__offer text-white fw-bold'>{product.offer}</span>}
                 {product.offerValue && <span className='popular-products__offer-value text-white fw-bold'>{product.offerValue}</span>}
@@ -91,13 +91,13 @@ const PopularProducts = () => {
           ))
         ) : (
           <div className='no-products d-flex align-items-center flex-column justify-content-between'>
-            <p className='fs-5 fw-normal'>No Products Available !!!</p>
-            <button className='btn bg-success text-white fs-6 fw-normal '>Reset Filter <i class="fa-solid fa-rotate-right"></i></button>
+            <p className='fs-5 fw-normal' data-testid="noproducts">No Products Available !!!</p>
+            <button className='btn bg-success text-white fs-6 fw-normal '>Reset Filter <i className="fa-solid fa-rotate-right"></i></button>
           </div>
         )}
 
         <div className="popular-products__overlay d-flex justify-content-center align-items-center w-100 position-absolute">
-          <Link to={'/products'} className='btn fs-5 fw-semibold rounded w-100 h-100 more__products-btn w-100 h-100 text-align-center d-flex align-items-center justify-content-center text-black text-decoration-underline'>View More Products <i class="fa-solid fa-arrow-right-long"></i></Link>
+          <Link to={'/products'} className='btn fs-5 fw-semibold rounded w-100 h-100 more__products-btn w-100 h-100 text-align-center d-flex align-items-center justify-content-center text-black text-decoration-underline' data-testid="product-item">View More Products <i className="fa-solid fa-arrow-right-long"></i></Link>
         </div>
       </div>
     </div>
