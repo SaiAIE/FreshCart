@@ -9,8 +9,10 @@ jest.mock("../../api/api.service", () => ({
 }));
 
 describe("Features Component", () => {
-  test("renders loading skeletons initially", () => {
+  test("renders loading skeletons initially",async () => {
+    await act(async ()=>{
     render(<Features />);
+    })
     expect(screen.getByTestId("features-loading")).toBeInTheDocument();
   });
 

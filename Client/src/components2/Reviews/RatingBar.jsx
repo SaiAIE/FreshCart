@@ -7,7 +7,7 @@ const RatingBar = ({ index, rating,loading }) => {
     <div key={index} className='product-info__rating-bar d-flex align-items-center my-2'>
       {loading ? (
         
-        <div className="loader">
+        <div className="loader" data-testid="loader">
         </div>
       ) : (
         

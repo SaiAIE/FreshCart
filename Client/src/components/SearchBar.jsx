@@ -17,7 +17,7 @@ const SearchBar = () => {
     const fetchDropdown = async () => {
       try {
         const response = await getDropdowns();
-        setDropdownData(response.data);
+        setDropdownData(response?.data);
       } catch (err) {
         console.log(err.message);
         setError("Please Try Again Later !!!");
@@ -62,7 +62,7 @@ const SearchBar = () => {
 </div>
               )}
  
-              {dropdownData.map((item, index) => (
+              {dropdownData?.map((item, index) => (
 <div className='searchbar__dropdown position-relative' key={index}>
 <div className={`searchbar__dropdown-heading ${item.className || ''} border-0 rounded`}>
                     {item.heading} {item.icon && <i className={item.icon}></i>}

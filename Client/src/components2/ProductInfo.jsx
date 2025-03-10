@@ -124,7 +124,7 @@ const ProductInfo = ({ product, loading }) => {
                         <div className='reviews2 py-3'>
                             <div className='product-info__reviews-list d-flex align-items-center justify-content-between'>
                                 <h4 className='product-info__reviews-title fw-bold'>Reviews</h4>
-                                <button className='product-info__reviews-btn btn border text-muted fw-bold fs-6'>Top Reviews <i class="fa-solid fa-chevron-down"></i></button>
+                                <button className='product-info__reviews-btn btn border text-muted fw-bold fs-6'>Top Reviews <i className="fa-solid fa-chevron-down"></i></button>
                             </div>
                             {loading ? (
                                 <>

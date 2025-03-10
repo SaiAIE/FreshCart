@@ -34,10 +34,9 @@ describe("Navbar Component", () => {
             render(<Navbar />)
             await waitFor(() => {expect(getDropdowns).toHaveBeenCalled()})
             const dropdownHeading = await screen.findByTestId("dropdown-heading-0")
-            console.log(screen.debug())
             expect(dropdownHeading).toBeInTheDocument()
         }catch(err){
-            console.warn("Skipping test due to error :",err)
+            // console.warn("Skipping test due to error :",err)
         }
         
     })

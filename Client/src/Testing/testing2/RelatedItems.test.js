@@ -1,6 +1,6 @@
 import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import React from "react";
-import PopularProducts from "../../components/PopularProducts";
+import RelatedItems from "../../components2/RelatedItems";
 import { getProducts } from "../../api/api.service";
 import { useCart } from "../../contexts/CartContext";
 import { MemoryRouter } from "react-router-dom";
@@ -15,13 +15,13 @@ jest.mock("../../contexts/CartContext", () => ({
     useCart: jest.fn(),
 }));
 
-describe("PopularProducts Component", () => {
+describe("RelatedItems Component", () => {
     beforeEach(() => {
         useCart.mockReturnValue({ addToCart: jest.fn() });
         jest.clearAllMocks();
     });
 
-    test("renders PopularProducts component correctly", async () => {
+    test("renders RelatedItems component correctly", async () => {
         getProducts.mockResolvedValueOnce([
             {
                 _id: "1",
@@ -37,13 +37,13 @@ describe("PopularProducts Component", () => {
 
         render(
             <MemoryRouter>
-                <PopularProducts />
+                <RelatedItems />
             </MemoryRouter>
         );
 
         await waitFor(() => expect(getProducts).toHaveBeenCalled());
 
-        expect(screen.getByText("Popular Products")).toBeInTheDocument();
+        expect(screen.getByText("Related Items")).toBeInTheDocument();
         expect(await screen.findByText("Test Product")).toBeInTheDocument();
     });
 
@@ -52,7 +52,7 @@ describe("PopularProducts Component", () => {
 
         render(
             <MemoryRouter>
-                <PopularProducts />
+                <RelatedItems />
             </MemoryRouter>
         );
 
@@ -64,57 +64,12 @@ describe("PopularProducts Component", () => {
 
         render(
             <MemoryRouter>
-                <PopularProducts />
+                <RelatedItems />
             </MemoryRouter>
         );
 
         await waitFor(() => expect(getProducts).toHaveBeenCalled());
         expect(await screen.findByTestId("noproducts")).toBeInTheDocument();
-    });
-
-    test("renders correct number of products based on screen size", async () => {
-        getProducts.mockResolvedValueOnce(
-            new Array(12).fill({
-                name: "Test Product",
-                price: 100,
-                category: "Snacks & Munchies",
-                rating: [4, 5],
-                image: ["/test-image.jpg"],
-            })
-        );
-
-        render(
-            <MemoryRouter>
-                <PopularProducts />
-            </MemoryRouter>
-        );
-
-        await waitFor(() => expect(getProducts).toHaveBeenCalled());
-
-
-        Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 1024 });
-        window.dispatchEvent(new Event("resize"));
-
-        await waitFor(() => {
-            const displayedProducts = screen.getAllByTestId("product-item")
-            expect(displayedProducts.length).toBeLessThanOrEqual(10)
-        });
-
-        render(
-            <MemoryRouter>
-                <PopularProducts />
-            </MemoryRouter>
-        );
-
-        await waitFor(() => expect(getProducts).toHaveBeenCalled());
-
-        Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 600 });
-        window.dispatchEvent(new Event("resize"));
-
-        await waitFor(() => {
-            const displayedProducts = screen.getAllByTestId("product-item")
-            // expect(displayedProducts.length).toBeLessThanOrEqual(8)
-        })
     });
 
     test("adds product to cart when Add button is clicked", async () => {
@@ -123,6 +78,7 @@ describe("PopularProducts Component", () => {
 
         getProducts.mockResolvedValueOnce([
             {
+                _id: "1",
                 name: "Test Product",
                 price: 100,
                 category: "Snacks & Munchies",
@@ -133,7 +89,7 @@ describe("PopularProducts Component", () => {
 
         render(
             <MemoryRouter>
-                <PopularProducts />
+                <RelatedItems />
             </MemoryRouter>
         );
 

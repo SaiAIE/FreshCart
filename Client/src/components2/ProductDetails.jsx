@@ -18,8 +18,6 @@ const ProductDetail = () => {
   const [error, setError] = useState(null);
   const [count, setCount] = useState(1);
 
-  const api = import.meta.env.VITE_BACKEND;
-
   useEffect(() => {
     const fetchProduct = async ()=>{
       try{
@@ -31,6 +29,7 @@ const ProductDetail = () => {
         }
       }
       catch(err){
+        console.error("Product Fetch Error:", err)
         setError(err)
       }
       finally{
@@ -86,7 +85,7 @@ const ProductDetail = () => {
               [...Array(4)].map((_, index) => (  
                 <div key={index} className="product-details__thumbnail-skeleton" />
               ))
-            ) : (product?.image.map((img, index) => (
+            ) : (product?.image?.map((img, index) => (
               <img
                 src={img}
                 alt=""
@@ -153,7 +152,7 @@ const ProductDetail = () => {
                 <div key={index} className="skeleton-quantity"></div> 
               ))
             ) : (
-              product?.details?.quantity.map((qnty, item) => (
+              product?.details?.quantity?.map((qnty, item) => (
                 <p className='product-details__quantity-item border border-secondary rounded m-1 px-3 py-2' key={qnty}>
                   {qnty}
                 </p>
@@ -181,7 +180,6 @@ const ProductDetail = () => {
             )}
           </div>
 
-          {/* Add to Cart and other buttons */}
           <div className='product-details__options d-flex gap-2'>
             {loading ? (
               <>

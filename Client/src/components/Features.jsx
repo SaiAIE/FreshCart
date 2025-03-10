@@ -11,7 +11,7 @@ const Features = () => {
     const fetchFeatures = async () => {
       try {
         const response = await getFeatures();
-        setFeaturesData(response.data);
+        setFeaturesData(response?.data);
       } catch (err) {
         console.log(err.message);
         setError("Error Fetching Data");
@@ -25,7 +25,7 @@ const Features = () => {
   return (
     <div className='features w-100 d-flex align-items-center justify-content-between'>
       {loading ? (
-        <div data-testid="features-loading" className='features_lists-skeleton gap-1 w-100 d-flex justify-content-between'>
+        <div className='features_lists-skeleton gap-1 w-100 d-flex justify-content-between' data-testid="features-loading">
         {[...Array(4)].map((_, index) => (
           <div key={index} className='features__item features__item-skeleton d-flex align-items-start justify-content-between gap-2 bg-white w-90 rounded-2'>
             <div className='features__item-icon features__item-icon-skeleton'></div>
@@ -40,7 +40,7 @@ const Features = () => {
         </div>
       ) : (
         
-        featuresData.map((feature, index) => (
+        featuresData?.map((feature, index) => (
           <div key={index} className='features__item d-flex flex-column justify-content-between gap-2'>
             <i className={`fa-solid ${feature.icon} features__item-icon fs-2 mb-3`}></i>
             <h3 className='features__item-title'>{feature.title}</h3>

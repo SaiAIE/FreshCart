@@ -29,7 +29,7 @@ const RelatedItems = () => {
       <div className='popular-products__list'>
         {loading ? (
           [...Array(5)].map((_, index) => (
-            <div className='popular-products__item skeleton' key={index}>
+            <div className='popular-products__item skeleton' key={index} data-testid="skeleton">
               <div className='skeleton-img placeholder w-100'></div>
               <div className='skeleton-content mt-3 mb-3'>
                 <div className='placeholder w-50 mb-2'></div>
@@ -42,7 +42,9 @@ const RelatedItems = () => {
               </div>
             </div>
           ))
-        ) : (products.slice(0, 5).map((product, index) => (
+        ) :products.length === 0 ?( 
+          <p className='text-muted fs-5 text-center' data-testid="noproducts">No Products Available</p>
+        ) :(products.slice(0, 5).map((product, index) => (
           <Link to={`/product/${product._id}`} className='popular-products__item d-flex flex-column position-relative rounded-2 h-auto text-black text-decoration-none w-100' key={product._id}>
             <div className='popular-products__item-offers d-flex flex-column align-items-start justify-content-between position-absolute'>
               {product.offer && <span className='popular-products__offer text-white fw-bold'>{product.offer}</span>}
