@@ -1,10 +1,10 @@
 import mongoose from "mongoose"
 
 const timerSchema = new mongoose.Schema({
-    days:{type: Number,default:0},
-    hours:{type: Number,default:0},
-    mins:{type: Number,default:0},
-    secs:{type: Number,default:0},
+    days:{type: Number},
+    hours:{type: Number},
+    mins:{type: Number},
+    secs:{type: Number},
 })
 
 const dailySellSchema = new mongoose.Schema({
