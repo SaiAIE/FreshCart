@@ -1,6 +1,6 @@
-import { Grocery } from "../models/grocery.model.js";
+const { Grocery } = require("../models/grocery.model.js");
 
-export const createGrocery = async (req,res)=>{
+ const createGrocery = async (req,res)=>{
     try{
         const grocery = new Grocery(req.body)
         await grocery.save()
@@ -10,7 +10,7 @@ export const createGrocery = async (req,res)=>{
     }
 }
 
-export const getAllGrocery = async(req,res)=>{
+ const getAllGrocery = async(req,res)=>{
     try{
         const groceries = await Grocery.find()
         res.status(200).json(groceries)
@@ -18,7 +18,7 @@ export const getAllGrocery = async(req,res)=>{
         res.status(500).json({error:error.message})
     }
 }
-export const getGroceryById = async(req,res)=>{
+ const getGroceryById = async(req,res)=>{
     try{
         const grocery = await Grocery.findById(req.params.id)
         if(!grocery) return res.status(404).json({message:"Grocery not found"})
@@ -28,7 +28,7 @@ export const getGroceryById = async(req,res)=>{
     }
 }
 
-export const updateGrocery = async (req,res)=>{
+ const updateGrocery = async (req,res)=>{
     try{
         const updateGrocery = await Grocery.findByIdAndUpdate(req.params.id,req.body,{new:true})
         if(!updateGrocery) return res.status(404).json({message:"Grocery not found"})
@@ -38,7 +38,7 @@ export const updateGrocery = async (req,res)=>{
     }
 }
 
-export const deleteGrocery = async (req,res)=>{
+ const deleteGrocery = async (req,res)=>{
     try{
         const deleteGrocery = await Grocery.findByIdAndDelete(req.params.id)
         if(!deleteGrocery) return res.status(404).json({message:"Grocery not found"})
@@ -47,3 +47,6 @@ export const deleteGrocery = async (req,res)=>{
         res.status(500).json({error:error.message})
     }
 }
+
+
+module.exports = {createGrocery,getAllGrocery,getGroceryById,updateGrocery,deleteGrocery}

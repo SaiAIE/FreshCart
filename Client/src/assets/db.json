@@ -1,0 +1,622 @@
+[[
+    {
+      "heading": "All Departments",
+      "icon": "fa-solid fa-border-all",
+      "options": [
+        "Dairy, Bread & Eggs",
+        "Snacks & Munchies",
+        "Fruits & Vegetables",
+        "Cold Drinks & Juices",
+        "Breakfast & Instant Food",
+        "Bakery & Biscuits",
+        "Chicken, Meat & Fish"
+      ],
+      "className": "All-Depts All-Depts-Mobile"
+    },
+    {
+      "heading": "Home",
+      "icon": "fa-solid fa-angle-down",
+      "options": [
+        "Home Default",
+        "Home Modern",
+        "Home Creative",
+        "Home Local Store",
+        "Home Minimalist"
+      ]
+    },
+    {
+      "heading": "Shop",
+      "icon": "fa-solid fa-angle-down",
+      "options": [
+        "Shop Grid - Filter",
+        "Shop Grid - Filter",
+        "Shop Grid - Filter",
+        "Shop Grid - Filter",
+        "Shop Grid - Filter",
+        "Shop Grid - Filter",
+        "Shop Grid - Filter",
+        "Shop Grid - Filter"
+      ]
+    },
+    {
+      "heading": "Stores",
+      "icon": "fa-solid fa-angle-down",
+      "options": [
+        "Store List",
+        "Store List",
+        "Store List"
+      ]
+    },
+    {
+      "heading": "Mega menu",
+      "icon": "fa-solid fa-angle-down",
+      "megaOptions": [
+        {
+          "title": "Dairy, Bread & Eggs",
+          "items": [
+            "Butter",
+            "Milk Drinks",
+            "Curd & Yogurt",
+            "Eggs",
+            "Buns & Bakery",
+            "Cheese",
+            "Condensed Milk",
+            "Dairy Products"
+          ]
+        },
+        {
+          "title": "Breakfast & Instant Food",
+          "items": [
+            "Breakfast Cereal",
+            "Noodles, Pasta & Soup",
+            "Frozen Veg Snacks",
+            "Frozen Non-Veg Snacks",
+            "Instant Mixes",
+            "Batter",
+            "Fruit and Juices"
+          ]
+        },
+        {
+          "title": "Cold Drinks & Juices",
+          "items": [
+            "Soft Drinks",
+            "Fruit Juices",
+            "Coldpress",
+            "Water & Ice Cubes",
+            "Soda & Mixers",
+            "Health Drinks",
+            "Herbal Drinks",
+            "Milk Drinks"
+          ]
+        }
+      ],
+      "offer": {
+        "imgSrc": "megamenu",
+        "text": "Don't miss this<br />offer today",
+        "buttonText": "Shop Now"
+      }
+    },
+    {
+      "heading": "Pages",
+      "icon": "fa-solid fa-angle-down",
+      "options": [
+        "Blog",
+        "Blog Single",
+        "Blog",
+        "Blog Single",
+        "Blog",
+        "Blog Single"
+      ]
+    },
+    {
+      "heading": "Account",
+      "icon": "fa-solid fa-angle-down",
+      "options": [
+        "Sign in",
+        "Signup",
+        "Forgot Password",
+        "My Account"
+      ]
+    },
+    {
+      "heading": "Dashboard"
+    },
+    {
+      "heading": "Docs",
+      "options": [
+        "Documentation",
+        "Changelog V1.0.0"
+      ]
+    }
+  ]
+  ,
+  [
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/slider/slide-1.jpg",
+      "tag": "Opening Sale Discount 10%",
+      "heading": "SuperMarket For Fresh Grocery",
+      "description": "Introduced a new model for online grocery shopping and convenient home delivery",
+      "buttonText": "Shop Now"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/slider/slide-2.jpg",
+      "tag": "Free Shipping - orders over $100",
+      "heading": "Free Shipping on orders over $100",
+      "description": "Free Shipping to First-Time Customers Only, After promotions and discounts are applied.",
+      "buttonText": "Shop Now"
+    }
+  ]
+,
+[
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/category/category-bakery-biscuits.jpg",
+      "title": "Bakery & Biscuits"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/category/category-instant-food.jpg",
+      "title": "Instant Food"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/category/category-tea-coffee-drinks.jpg",
+      "title": "Tea, Coffee & Drinks"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/category/category-atta-rice-dal.jpg",
+      "title": "Atta, Rice & Dal"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/category/category-baby-care.jpg",
+      "title": "Baby Care"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/category/category-chicken-meat-fish.jpg",
+      "title": "Chicken, Meat & Fish"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/category/category-cleaning-essentials.jpg",
+      "title": "Cleaning Essentials"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/category/category-pet-care.jpg",
+      "title": "Pet Care"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/category/category-dairy-bread-eggs.jpg",
+      "title": "Dairy, Bread & Eggs"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/category/category-snack-munchies.jpg",
+      "title": "Snacks & Munchies"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/category/category-fruits-vegetables.jpg",
+      "title": "Fruits & Vegetables"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/category/category-cold-drinks-jucies.jpg",
+      "title": "Beverages"
+    }
+  ]
+  ,
+  [
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/banner/grocery-banner.png",
+      "title": "Fruits & Vegetables",
+      "offer": "Get Upto 30% off"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/banner/grocery-banner-2.jpg",
+      "title": "Freshly Baked Buns",
+      "offer": "Get Upto 25% off"
+    }
+  ]
+,
+[
+    {
+      "icon": "fa-clock",
+      "title": "10 minute grocery now",
+      "description": "Get your order delivered to your doorstep at the earliest from FreshCart pickup stores near you."
+    },
+    {
+      "icon": "fa-gift",
+      "title": "Best Prices & Offers",
+      "description": "Cheaper prices than your local supermarket, great cashback offers to top it off. Get best prices & offers."
+    },
+    {
+      "icon": "fa-box",
+      "title": "Wide Assortment",
+      "description": "Choose from 5000+ products across food, personal care, household, bakery, veg and non-veg & other categories."
+    },
+    {
+      "icon": "fa-rotate",
+      "title": "Easy Returns",
+      "description": "Not satisfied with a product? Return it at the doorstep & get a refund within hours. No questions asked policy."
+    }
+  ]
+,
+[
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/banner/banner-deal.jpg",
+      "title": "100% Organic Coffee Beans.",
+      "description": "Get the best deal before close",
+      "buttonText": "Shop Now"
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/products/product-img-11.jpg",
+      "category": "Tea, Coffee & Drinks",
+      "title": "Roast Ground Coffee",
+      "price": "$13.5",
+      "originalPrice": "$18",
+      "rating": 4.5,
+      "buttonText": "+ Add To Cart",
+      "timer": {
+        "days": 1334,
+        "hours": 23,
+        "mins": 3,
+        "secs": 20
+      }
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/products/product-img-12.jpg",
+      "category": "Tea, Coffee & Drinks",
+      "title": "Roast Ground Coffee",
+      "price": "$13.5",
+      "originalPrice": "$18",
+      "rating": 4.5,
+      "buttonText": "+ Add To Cart",
+      "timer": {
+        "days": 1334,
+        "hours": 23,
+        "mins": 3,
+        "secs": 20
+      }
+    },
+    {
+      "img": "https://freshcart-next-js.vercel.app/images/products/product-img-13.jpg",
+      "category": "Tea, Coffee & Drinks",
+      "title": "Roast Ground Coffee",
+      "price": "$13.5",
+      "originalPrice": "$18",
+      "rating": 4.5,
+      "buttonText": "+ Add To Cart",
+      "timer": {
+        "days": 1334,
+        "hours": 23,
+        "mins": 3,
+        "secs": 20
+      }
+    }
+  ]
+,
+[
+    {
+      "heading": "Categories",
+      "items": [
+        "Vegetables & Fruits",
+        "Breakfast & instant food",
+        "Bakery & Biscuits",
+        "Atta, rice & dal",
+        "Sauces & spreads",
+        "Organic & gourmet",
+        "Baby care",
+        "Cleaning essentials",
+        "Personal care"
+      ]
+    },
+    {
+      "heading": "",
+      "items": [
+        "", 
+        "",
+        "Dairy, bread & eggs",
+        "Cold drinks & juices",
+        "Tea, coffee & drinks",
+        "Masala, oil & more",
+        "Chicken, meat & fish",
+        "Paan corner",
+        "Pharma & wellness",
+        "Home & office",
+        "Pet care"
+      ]
+    },
+    {
+      "heading": "Get to know us",
+      "items": ["Company", "About", "Blog", "Help Center", "Our Value"]
+    },
+    {
+      "heading": "For Consumers",
+      "items": ["Payments", "Shipping", "Product Returns", "FAQ", "Shop Checkout"]
+    },
+    {
+      "heading": "Become a Shopper",
+      "items": [
+        "Shopper Opportunities",
+        "Become a Shopper",
+        "Earnings",
+        "Ideas & Guides",
+        "New Retailers"
+      ]
+    },
+    {
+      "heading": "Freshcart programs",
+      "items": [
+        "Gift Cards",
+        "Promos & Coupons",
+        "Freshcart Ads",
+        "Careers"
+      ]
+    }
+  ]
+,
+[{
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b43307e"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Snack & Munchies",
+    "name": "Haldiram's Sev Bhujia",
+    "rating": "★★★★★",
+    "price": "$21.6",
+    "originalPrice": "$24",
+    "offer": "Sale",
+    "offerValue": "10%"
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b43307f"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Bakery & Biscuits",
+    "name": "Nutrichoice Digestive",
+    "rating": "★★★★★",
+    "price": "$24",
+    "originalPrice": "$24",
+    "offer": "",
+    "offerValue": ""
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b433080"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-3.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Bakery & Biscuits",
+    "name": "Cadbury 5 Star Chocolate",
+    "rating": "★★★★★",
+    "price": "$35",
+    "originalPrice": "$36",
+    "offer": "Buy 1 Get $4.00 Off",
+    "offerValue": ""
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b433081"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-4.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Snack & Munchies",
+    "name": "Onion Flavour Potato",
+    "rating": "★★★★★",
+    "price": "$3",
+    "originalPrice": "$5",
+    "offer": "Hot",
+    "offerValue": "40%"
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b433082"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-5.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Instant Food",
+    "name": "Salted Instant Popcorn",
+    "rating": "★★★★★",
+    "price": "$11.7",
+    "originalPrice": "$18",
+    "offer": "",
+    "offerValue": "35%"
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b433083"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-3.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Bakery & Biscuits",
+    "name": "Cadbury 5 Star Chocolate",
+    "rating": "★★★★★",
+    "price": "$35",
+    "originalPrice": "$36",
+    "offer": "Buy 1 Get $4.00 Off",
+    "offerValue": ""
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b433084"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Snack & Munchies",
+    "name": "Haldiram's Sev Bhujia",
+    "rating": "★★★★★",
+    "price": "$21.6",
+    "originalPrice": "$24",
+    "offer": "Sale",
+    "offerValue": "10%"
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b433085"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-6.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Dairy, Bread & Eggs",
+    "name": "Blueberry Greek Yogurt",
+    "rating": "★★★★★",
+    "price": "$14.4",
+    "originalPrice": "$24",
+    "offer": "",
+    "offerValue": "40%"
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b433086"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-7.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Dairy, Bread & Eggs",
+    "name": "Britannia Cheese Slices",
+    "rating": "★★★★★",
+    "price": "$24",
+    "originalPrice": "$26",
+    "offer": "",
+    "offerValue": ""
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b433087"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-8.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Instant Food",
+    "name": "Kellogg's Original Cereals",
+    "rating": "★★★★★",
+    "price": "$29.5",
+    "originalPrice": "$34",
+    "offer": "",
+    "offerValue": "15%"
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b433088"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Bakery & Biscuits",
+    "name": "Nutrichoice Digestive",
+    "rating": "★★★★★",
+    "price": "$24",
+    "originalPrice": "$24",
+    "offer": "",
+    "offerValue": ""
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b433089"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-10.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Snack & Munchies",
+    "name": "Slurrp Millet Chocolate",
+    "rating": "★★★★★",
+    "price": "$0",
+    "originalPrice": "$0",
+    "offer": "",
+    "offerValue": ""
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b43308a"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-9.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Dairy, Bread & Eggs",
+    "name": "Amul Butter - 500 g",
+    "rating": "★★★★★",
+    "price": "$13.5",
+    "originalPrice": "$18",
+    "offer": "",
+    "offerValue": "25%"
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b43308b"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Bakery & Biscuits",
+    "name": "Nutrichoice Digestive",
+    "rating": "★★★★★",
+    "price": "$24",
+    "originalPrice": "$24",
+    "offer": "",
+    "offerValue": ""
+  },
+  {
+    "_id": {
+      "$oid": "67d2d16f3c7593df9b43308c"
+    },
+    "image": [
+      "https://freshcart-next-js.vercel.app/images/products/product-img-10.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-1.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-2.jpg",
+      "https://freshcart-next-js.vercel.app/images/products/product-single-img-3.jpg"
+    ],
+    "category": "Snack & Munchies",
+    "name": "Slurrp Millet Chocolate",
+    "rating": "★★★★★",
+    "price": "$0",
+    "originalPrice": "$0",
+    "offer": "",
+    "offerValue": ""
+  }]    
+]
+  

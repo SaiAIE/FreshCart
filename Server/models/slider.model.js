@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose")
 
 const SliderSchema = new mongoose.Schema({
     img:{type:String,required:true},
@@ -8,4 +8,5 @@ const SliderSchema = new mongoose.Schema({
     buttonText:{type:String,default:"Shop Now"}
 })
 
-export const Slider = mongoose.model("Slider",SliderSchema)
+const Slider = mongoose.model("Slider",SliderSchema)
+module.exports={Slider}

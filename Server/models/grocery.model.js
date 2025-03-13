@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose")
 
 const grocerySchema = new mongoose.Schema({
     img:{
         type:String,
-        required:true
+        required:true,
     },
     title:{
         type:String,
@@ -15,4 +15,6 @@ const grocerySchema = new mongoose.Schema({
     }
 })
 
-export const Grocery = mongoose.model("Grocery",grocerySchema)
+const Grocery = mongoose.model("Grocery",grocerySchema)
+
+module.exports = {Grocery}

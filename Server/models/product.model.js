@@ -1,4 +1,4 @@
-import mongoose, { Mongoose } from "mongoose";
+const mongoose = require("mongoose")
 
 const ReviewSchema = new mongoose.Schema({
     profile:{type:String,required:true},
@@ -112,4 +112,5 @@ const ProductSchema = new mongoose.Schema({
     }
 })
 
-export const Product = mongoose.model("Product",ProductSchema)
+const Product = mongoose.model("Product",ProductSchema)
+module.exports={Product}

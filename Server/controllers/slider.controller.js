@@ -1,6 +1,6 @@
-import { Slider } from "../models/slider.model.js";
+const { Slider } = require("../models/slider.model.js");
 
-export const createSlider = async (req,res)=>{
+ const createSlider = async (req,res)=>{
     try{
         const slider = new Slider(req.body)
         await slider.save()
@@ -10,7 +10,7 @@ export const createSlider = async (req,res)=>{
     }
 }
 
-export const getAllSlider = async(req,res)=>{
+ const getAllSlider = async(req,res)=>{
     try{
         const sliders = await Slider.find()
         res.status(200).json(sliders)
@@ -18,7 +18,7 @@ export const getAllSlider = async(req,res)=>{
         res.status(500).json({error:error.message})
     }
 }
-export const getSliderById = async(req,res)=>{
+ const getSliderById = async(req,res)=>{
     try{
         const slider = await Slider.findById(req.params.id)
         if(!slider) return res.status(404).json({message:"Slider not found"})
@@ -28,7 +28,7 @@ export const getSliderById = async(req,res)=>{
     }
 }
 
-export const updateSlider = async (req,res)=>{
+ const updateSlider = async (req,res)=>{
     try{
         const updateSlider = await Slider.findByIdAndUpdate(req.params.id,req.body,{new:true})
         if(!updateSlider) return res.status(404).json({message:"Slider not found"})
@@ -38,7 +38,7 @@ export const updateSlider = async (req,res)=>{
     }
 }
 
-export const deleteSlider = async (req,res)=>{
+ const deleteSlider = async (req,res)=>{
     try{
         const deleteSlider = await Slider.findByIdAndDelete(req.params.id)
         if(!deleteSlider) return res.status(404).json({message:"Slider not found"})
@@ -47,3 +47,6 @@ export const deleteSlider = async (req,res)=>{
         res.status(500).json({error:error.message})
     }
 }
+
+
+module.exports = {createSlider,getAllSlider,getSliderById,updateSlider,deleteSlider}

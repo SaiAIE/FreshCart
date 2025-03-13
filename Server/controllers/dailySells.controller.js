@@ -1,6 +1,5 @@
-import { DailySell } from "../models/dailySells.model.js";
-
-export const createDailySell = async (req,res)=>{
+const {DailySell} = require("../models/dailySells.model.js")
+ const createDailySell = async (req,res)=>{
     try{
         const dailySell = new DailySell(req.body)
         await dailySell.save()
@@ -10,7 +9,7 @@ export const createDailySell = async (req,res)=>{
     }
 }
 
-export const getAllDailySell = async(req,res)=>{
+ const getAllDailySell = async(req,res)=>{
     try{
         const dailySells = await DailySell.find()
         res.status(200).json(dailySells)
@@ -18,7 +17,7 @@ export const getAllDailySell = async(req,res)=>{
         res.status(500).json({error:error.message})
     }
 }
-export const getDailySellById = async(req,res)=>{
+ const getDailySellById = async(req,res)=>{
     try{
         const dailySell = await DailySell.findById(req.params.id)
         if(!dailySell) return res.status(404).json({message:"Daily Sell not found"})
@@ -28,7 +27,7 @@ export const getDailySellById = async(req,res)=>{
     }
 }
 
-export const updateDailySell = async (req,res)=>{
+ const updateDailySell = async (req,res)=>{
     try{
         const updateDailySell = await DailySell.findByIdAndUpdate(req.params.id,req.body,{new:true})
         if(!updateDailySell) return res.status(404).json({message:"Daily Sell not found"})
@@ -38,7 +37,7 @@ export const updateDailySell = async (req,res)=>{
     }
 }
 
-export const deleteDailySell = async (req,res)=>{
+ const deleteDailySell = async (req,res)=>{
     try{
         const deleteDailySell = await DailySell.findByIdAndDelete(req.params.id)
         if(!deleteDailySell) return res.status(404).json({message:"Daily Sell not found"})
@@ -47,3 +46,5 @@ export const deleteDailySell = async (req,res)=>{
         res.status(500).json({error:error.message})
     }
 }
+
+module.exports ={createDailySell,updateDailySell,getAllDailySell,getDailySellById,deleteDailySell}

@@ -1,11 +1,11 @@
 import mongoose from "mongoose"
 
 const timerSchema = new mongoose.Schema({
-    days:{type: Number,default:0},
-    hours:{type: Number,default:0},
-    mins:{type: Number,default:0},
-    secs:{type: Number,default:0},
-})
+    days:{type: Number},
+    hours:{type: Number},
+    mins:{type: Number},
+    secs:{type: Number},
+},{_id:false})
 
 const dailySellSchema = new mongoose.Schema({
     img:{
@@ -38,7 +38,7 @@ const dailySellSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    timer: timerSchema
+    timer: { type:timerSchema, required:false,default:undefined}
 })
 
 export const DailySell = mongoose.model("DailySell",dailySellSchema)

@@ -6,6 +6,7 @@ const DailyBestSells = () => {
   const [dailySellsData, setDailySells] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  console.log(dailySellsData)
 
   useEffect(() => {
     const fetchDailySells = async () => {

@@ -1,6 +1,6 @@
-import { Dropdown } from "../models/dropdown.model.js";
+const {Dropdown} = require("../models/dropdown.model.js")
 
-export const createDropdown = async (req,res)=>{
+const createDropdown = async (req,res)=>{
     try{
         const dropdown = new Dropdown(req.body)
         await dropdown.save()
@@ -10,7 +10,7 @@ export const createDropdown = async (req,res)=>{
     }
 }
 
-export const getAllDropdown = async(req,res)=>{
+const getAllDropdown = async(req,res)=>{
     try{
         const dropdowns = await Dropdown.find()
         res.status(200).json(dropdowns)
@@ -18,7 +18,7 @@ export const getAllDropdown = async(req,res)=>{
         res.status(500).json({error:error.message})
     }
 }
-export const getDropdownById = async(req,res)=>{
+const getDropdownById = async(req,res)=>{
     try{
         const dropdown = await Dropdown.findById(req.params.id)
         if(!dropdown) return res.status(404).json({message:"Dropdown not found"})
@@ -28,7 +28,7 @@ export const getDropdownById = async(req,res)=>{
     }
 }
 
-export const updateDropdown = async (req,res)=>{
+const updateDropdown = async (req,res)=>{
     try{
         const updateDropdown = await Dropdown.findByIdAndUpdate(req.params.id,req.body,{new:true})
         if(!updateDropdown) return res.status(404).json({message:"Dropdown not found"})
@@ -38,7 +38,7 @@ export const updateDropdown = async (req,res)=>{
     }
 }
 
-export const deleteDropdown = async (req,res)=>{
+const deleteDropdown = async (req,res)=>{
     try{
         const deleteDropdown = await Dropdown.findByIdAndDelete(req.params.id)
         if(!deleteDropdown) return res.status(404).json({message:"Dropdown not found"})
@@ -47,3 +47,5 @@ export const deleteDropdown = async (req,res)=>{
         res.status(500).json({error:error.message})
     }
 }
+
+module.exports={createDropdown,updateDropdown,getDropdownById,getAllDropdown,deleteDropdown}

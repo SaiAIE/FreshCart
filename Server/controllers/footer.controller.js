@@ -1,6 +1,6 @@
-import { Footer } from "../models/footer.model.js";
+const { Footer } = require("../models/footer.model.js");
 
-export const createFooter = async (req,res)=>{
+ const createFooter = async (req,res)=>{
     try{
         const footer = new Footer(req.body)
         await footer.save()
@@ -10,7 +10,7 @@ export const createFooter = async (req,res)=>{
     }
 }
 
-export const getAllFooter = async(req,res)=>{
+ const getAllFooter = async(req,res)=>{
     try{
         const footers = await Footer.find()
         res.status(200).json(footers)
@@ -18,7 +18,7 @@ export const getAllFooter = async(req,res)=>{
         res.status(500).json({error:error.message})
     }
 }
-export const getFooterById = async(req,res)=>{
+ const getFooterById = async(req,res)=>{
     try{
         const footer = await Footer.findById(req.params.id)
         if(!footer) return res.status(404).json({message:"Footer not found"})
@@ -28,7 +28,7 @@ export const getFooterById = async(req,res)=>{
     }
 }
 
-export const updateFooterr = async (req,res)=>{
+ const updateFooterr = async (req,res)=>{
     try{
         const updateFooter = await Footer.findByIdAndUpdate(req.params.id,req.body,{new:true})
         if(!updateFooter) return res.status(404).json({message:"Footer not found"})
@@ -38,7 +38,7 @@ export const updateFooterr = async (req,res)=>{
     }
 }
 
-export const deleteFooter = async (req,res)=>{
+ const deleteFooter = async (req,res)=>{
     try{
         const deleteFooter = await Footer.findByIdAndDelete(req.params.id)
         if(!deleteFooter) return res.status(404).json({message:"Footer not found"})
@@ -47,3 +47,5 @@ export const deleteFooter = async (req,res)=>{
         res.status(500).json({error:error.message})
     }
 }
+
+module.exports ={createFooter,getAllFooter,getFooterById,updateFooterr,deleteFooter}
