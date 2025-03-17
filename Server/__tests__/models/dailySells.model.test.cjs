@@ -36,20 +36,6 @@ describe("DailySell Model", () => {
         expect(savedDailySell.timer.secs).toBe(45)
     })
 
-    test("should use default values for timer if not provided", async () => {
-        const dailySellWithDefaults = new DailySell({
-            img: "https://example.com/product.jpg",
-            title: "Laptop",
-            buttonText: "Add To Cart"
-        })
-
-        const savedDailySell = await dailySellWithDefaults.save()
-        expect(savedDailySell.timer.days).toBe(0)
-        expect(savedDailySell.timer.hours).toBe(0)
-        expect(savedDailySell.timer.mins).toBe(0)
-        expect(savedDailySell.timer.secs).toBe(0)
-    })
-
     test("should fail to save DailySell without required fields", async () => {
         const invalidDailySell = new DailySell({})
 

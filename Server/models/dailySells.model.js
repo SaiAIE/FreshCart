@@ -1,5 +1,4 @@
-import mongoose from "mongoose"
-
+const mongoose = require("mongoose")
 const timerSchema = new mongoose.Schema({
     days:{type: Number},
     hours:{type: Number},
@@ -41,4 +40,5 @@ const dailySellSchema = new mongoose.Schema({
     timer: { type:timerSchema, required:false,default:undefined}
 })
 
-export const DailySell = mongoose.model("DailySell",dailySellSchema)
+const DailySell = mongoose.model("DailySell",dailySellSchema)
+module.exports={DailySell}
