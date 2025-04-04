@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCart } from '../contexts/CartContext';
-import { getDropdowns } from '../api/api.service';
+import { useNavigate } from 'react-router-dom';
+import { getAllCategoriesProducts } from '../api/api.service';
 import Cart from "./Cart";
 import logo from "../assets/logo.svg";
 import "../styles/Searchbar.css";
@@ -12,12 +13,20 @@ const SearchBar = () => {
   const [error, setError] = useState("");
   const { cart } = useCart();
   const [cartOpen, setCartOpen] = useState(false);
+  const navigate = useNavigate()
+  
  
   useEffect(() => {
     const fetchDropdown = async () => {
       try {
-        const response = await getDropdowns();
-        setDropdownData(response?.data);
+        const response = await getAllCategoriesProducts();
+        const allDepartments = {
+          categoryName: "All Departments",
+          icon:"fa fa-border-all",
+          link:"/products",
+          className:"All-Depts"
+        }
+        setDropdownData([allDepartments,...response?.data]);
       } catch (err) {
         console.log(err.message);
         setError("Please Try Again Later !!!");
@@ -27,17 +36,36 @@ const SearchBar = () => {
     };
     fetchDropdown();
   }, []);
+
+  const handleCategoryClick = (category)=>{
+    setIsSidebarOpen(false)
+    if(category.link){
+      navigate(category.link)
+    } else {
+      navigate(`/products/${category.categoryName}`)
+    }
+  }
+
+  const handleProductClick = (productId) =>{
+    setIsSidebarOpen(false)
+    navigate(`/product/${productId}`)
+  }
  
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  const handleHomeClick = ()=>{
+    setIsSidebarOpen(false)
+    navigate("/")
+  }
  
   return (
 <div className="searchbar d-flex align-items-center justify-content-between w-100">
 <>
 <div role="complementary" className={`searchbar__sidebar ${isSidebarOpen ? 'searchbar__sidebar--open' : ''} position-fixed top-0 w-100 h-100 bg-white `}>
 <div className='searchbar__sidebar-top p-0 m-0 d-flex flex-row align-items-center justify-content-between'>
-<img src={logo} alt="" className='searchbar__logo searchbar__logo--mobile' />
+<img src={logo} alt="" className='searchbar__logo searchbar__logo--mobile' style={{cursor:"pointer"}} onClick={handleHomeClick}/>
 <div className='searchbar__close-icon text-end' onClick={toggleSidebar}>
 <i className='fa-solid fa-xmark'></i>
 </div>
@@ -64,17 +92,17 @@ const SearchBar = () => {
  
               {dropdownData?.map((item, index) => (
 <div className='searchbar__dropdown position-relative' key={index}>
-<div className={`searchbar__dropdown-heading ${item.className || ''} border-0 rounded`}>
-                    {item.heading} {item.icon && <i className={item.icon}></i>}
+<div className={`searchbar__dropdown-heading ${item.className || ''} border-0 rounded`} >
+                    <span onClick={()=> handleCategoryClick(item)}>{item.categoryName}</span> {item.icon ? <i onClick={(e)=> e.stopPropagation()} className={item.icon}></i> : <i class="fa-solid fa-angle-down"></i>}
 </div>
-                  {item.options && (
+                  {item.products && (
 <div className="searchbar__dropdown-options position-absolute top-100 bg-white rounded-1 start-50 flex-row">
-                      {item.options.map((option, idx) => (
-<p key={idx} className='searchbar__dropdown-option m-0'>{option}</p>
+                      {item.products.map((option, idx) => (
+<p key={idx} className='searchbar__dropdown-option m-0' onClick={()=> handleProductClick(option.productId)}>{option.name}</p>
                       ))}
 </div>
                   )}
-                  {item.heading === "Mega menu" && (
+                  {/* {item.heading === "Mega menu" && (
 <div className="searchbar__dropdown-options searchbar__dropdown-options--mega flex-column align-items-start justify-content-evenly position-absolute bg-white">
                       {item.megaOptions.map((col, idx) => (
 <div className="searchbar__menu-column d-flex flex-column justify-content-evenly" key={idx}>
@@ -94,7 +122,7 @@ const SearchBar = () => {
 </div>
                       )}
 </div>
-                  )}
+                  )} */}
 </div>
               ))}
 </div>
@@ -103,7 +131,7 @@ const SearchBar = () => {
 </>
  
       <div className='searchbar__left d-flex flex-row align-items-center justify-content-between'>
-<img src={logo} alt="" className='searchbar__logo' />
+<img src={logo} alt="" className='searchbar__logo'  onClick={handleHomeClick}/>
 <div className='searchbar__main align-items-center'>
 <div className='searchbar__input position-relative'>
 <input type="input" placeholder='Search for products' className='searchbar__input-field rounded-1 text-secondary border border-outline-secondary' />

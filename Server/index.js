@@ -10,6 +10,7 @@ const featureRoutes = require("./routes/features.routes")
 const dailySellsRoutes = require("./routes/dailysells.routes")
 const footerRoutes = require("./routes/footer.routes")
 const productRoutes = require("./routes/product.routes")
+const productsCategories = require("./routes/productsCategories.routes")
 
 dotenv.config()
 const app = express()
@@ -43,6 +44,8 @@ app.use("/api/features",featureRoutes)
 app.use("/api/dailySells",dailySellsRoutes)
 app.use("/api/footer",footerRoutes)
 app.use("/api/product",productRoutes)
+app.use("/api/productsCategories",productsCategories)
+
 
 mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true})
 .then(()=>{

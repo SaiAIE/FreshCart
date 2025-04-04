@@ -1,153 +1,197 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import { getAllCategoriesProducts } from '../api/api.service';
 import { getProducts } from '../api/api.service';
-import {Link} from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useCart } from '../contexts/CartContext';
 import "../styles/PopularProducts.css";
 
 const Products = () => {
-    const [products,setProducts] = useState([])
-    const [loading,setLoading] = useState(true)
-    const {addToCart} = useCart()
-    const [filteredProducts, setFileteredProducts] = useState([])
-    const [originalOrder,setOriginalOrder] = useState([])
-    const [selectFilters,setSelectedFilters] = useState({
-      category:"",
-      priceRange:"",
-      rating:"",
-      sortOrder:""
-    })
-    const [dropdowns, setDropdowns] = useState({})
-  
-    useEffect(()=>{
-      const fetchProducts = async()=>{
-        try{
-          const updatedProducts = await getProducts()
-          setProducts(updatedProducts)
-          setFileteredProducts(updatedProducts)
-          setOriginalOrder(updatedProducts)
-        }
-        catch(err){
-          console.log(err.message)
-        }finally{
-          setLoading(false)
-        }
-      }
-      fetchProducts()
-    },[])
+  const [categories, setCategories] = useState([])
+  const { category: categoryFromParams } = useParams()
+  console.log("CATGEORY FROM PARAMS",categoryFromParams)
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const { addToCart } = useCart()
+  const [filteredProducts, setFileteredProducts] = useState([])
+  const [originalOrder, setOriginalOrder] = useState([])
+  const [selectFilters, setSelectedFilters] = useState({
+    category: "",
+    priceRange: "",
+    rating: "",
+    sortOrder: ""
+  })
+  const [dropdowns, setDropdowns] = useState({})
+  console.log(categories)
+  console.log(products)
 
-    const handleResetFilters =()=>{
-      setSelectedFilters({
-        category:"",
-        priceRange:"",
-        rating:"",
-        sortOrder:"",
-      })
+  useEffect(()=> {
+    if(!categoryFromParams){
+      setSelectedFilters(prev => ({
+        ...prev,
+        category:""
+      }))
       setFileteredProducts(products)
     }
+  },[categoryFromParams,products])
 
-    const toggleDropdown = (key)=>{
-      setDropdowns(prev => ({...prev, [key]: !prev[key]}))
+  useEffect (()=> {
+    const fetchCategories = async ()=>{
+      try{
+        const fetchedCategories = await getAllCategoriesProducts()
+        const fetchedProducts = await getProducts()
+        const validCategories = fetchedCategories.data.filter(category => 
+          fetchedProducts.some(product => product.category === category.categoryName)
+        )
+        setCategories(validCategories)
+      } catch(err){
+        console.error('Error fetching catgeories')
+      }
     }
-
-    const handleFilterChange = (key,value)=>{
-      setSelectedFilters(prev =>{
-        const newFilters = {...prev, [key]: key === "rating" ? Number(value) : value}
-        applyFilters(newFilters)
-        return newFilters
-      })
-      setDropdowns(prev => ({...prev, [key]: false}))
+    if(!categoryFromParams){
+      fetchCategories()
     }
+  },[categoryFromParams])
 
-    const applyFilters = (filters)=>{
-      let updatedList = [...products]
-      if(filters.category){
-        updatedList = updatedList.filter(product => product.category === selectFilters.category)
-      }
-      if(filters.priceRange){
-        const [min,max]=selectFilters.priceRange.split('-').map(Number)
-        updatedList = updatedList.filter(product => product.price >= min && product.price <= max)
-      }
-      if(filters.rating){
-        const minRating = Number(filters.rating)
-        updatedList = updatedList.filter(product=>
-        {
-          const ratingCount = product.rating.length;
-          return ratingCount >=minRating
-        })
-      }
-
-      if(filters.sortOrder){
-        if(filters.sortOrder === "popular"){
-          updatedList = [...originalOrder]
-        }else{
-          updatedList.sort((a,b)=> filters.sortOrder === "low-to-high" ? a.price - b.price : b.price - a.price)
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const updatedProducts = await getProducts()
+        let filtered = updatedProducts
+        if(categoryFromParams){
+          filtered = updatedProducts.filter(p => p.category === categoryFromParams)
+          setSelectedFilters(prev => ({...prev, category:categoryFromParams}))
         }
+        setProducts(updatedProducts)
+        setFileteredProducts(filtered)
+        setOriginalOrder(filtered)
       }
-      setFileteredProducts(updatedList)
-    }
-
-    useEffect(()=> {
-      applyFilters(selectFilters)
-    },[selectFilters,products])
-
-    const handleSort = (order)=>{
-      setSelectedFilters(prev => ({...prev, sortOrder:order}))
-      setDropdowns(prev => ({...prev, sort:false}))
-
-      if(order === "popular"){
-        setFileteredProducts(originalOrder)
-      }
-      else{
-        const sortedList = [...filteredProducts].sort((a,b)=>{
-          return order === "low-to-high" ? a.price - b.price : b.price - a.price
-        })
-        setFileteredProducts(sortedList)
+      catch (err) {
+        console.log(err.message)
+      } finally {
+        setLoading(false)
       }
     }
+    fetchProducts()
+  }, [categoryFromParams])
+
+  const handleResetFilters = () => {
+    setSelectedFilters({
+      category: "",
+      priceRange: "",
+      rating: "",
+      sortOrder: "",
+    })
+    setFileteredProducts(products)
+  }
+
+  const toggleDropdown = (key) => {
+    setDropdowns(prev => ({ ...prev, [key]: !prev[key] }))
+  }
+
+  const handleFilterChange = (key, value) => {
+    setSelectedFilters(prev => {
+      const newFilters = { ...prev, [key]: key === "rating" ? Number(value) : value }
+      applyFilters(newFilters)
+      return newFilters
+    })
+    setDropdowns(prev => ({ ...prev, [key]: false }))
+  }
+
+  const applyFilters = (filters) => {
+    let updatedList = [...products]
+
+    const selectedCategory = typeof filters.category === "string"
+    ? filters.category
+    : filters.category?.categoryName
+    console.log("FILTERS CATEGORY",selectedCategory)
+    if (selectedCategory) {
+      updatedList = updatedList.filter(product => product?.category?.trim().toLowerCase()  === selectedCategory?.trim().toLowerCase())
+      console.log("UPDATED LIST",updatedList)
+    }
+    if (filters.priceRange) {
+      const [min, max] = selectFilters.priceRange.split('-').map(Number)
+      updatedList = updatedList.filter(product => product.price >= min && product.price <= max)
+    }
+    if (filters.rating) {
+      const minRating = Number(filters.rating)
+      updatedList = updatedList.filter(product => {
+        const ratingCount = product.rating.length;
+        return ratingCount >= minRating
+      })
+    }
+
+    if (filters.sortOrder) {
+      if (filters.sortOrder === "popular") {
+        updatedList = [...originalOrder]
+      } else {
+        updatedList.sort((a, b) => filters.sortOrder === "low-to-high" ? a.price - b.price : b.price - a.price)
+      }
+    }
+    setFileteredProducts(updatedList)
+  }
+
+  useEffect(() => {
+    applyFilters(selectFilters)
+  }, [selectFilters, products])
+
+  const handleSort = (order) => {
+    setSelectedFilters(prev => ({ ...prev, sortOrder: order }))
+    setDropdowns(prev => ({ ...prev, sort: false }))
+
+    if (order === "popular") {
+      setFileteredProducts(originalOrder)
+    }
+    else {
+      const sortedList = [...filteredProducts].sort((a, b) => {
+        return order === "low-to-high" ? a.price - b.price : b.price - a.price
+      })
+      setFileteredProducts(sortedList)
+    }
+  }
 
   return (
     <div className='popular-products w-100'>
-      <h2 className='popular-products__title fw-semibold fs-4' >All Products</h2>
-      <div  className='popular-products__controls mt-3 d-flex align-items-end justify-content-end'>
-        <div className='dropdown position-relative d-inline-block p-0 rounded' onClick={()=> toggleDropdown('category')}>
+      <h2 className='popular-products__title fw-semibold fs-4'>{categoryFromParams ? `Products in "${categoryFromParams}"`: "All Products"}</h2>
+      <div className='popular-products__controls mt-3 d-flex align-items-end justify-content-end'>
+        <div className={`dropdown position-relative d-inline-block p-0 rounded ${categoryFromParams ? "disabled":""}`} onClick={() =>toggleDropdown('category')}>
           <span className='dropdown-heading'>Category <i className="fa-solid fa-angle-down"></i></span>
           {dropdowns.category && (
             <div className='dropdown-menu position-absolute top-100 start-0 bg-white flex-column w-auto'>
-              {['Snack & Munchies', "Bakery & Biscuits","Instant Food","Dairy, Bread & Eggs"].map(category => (
-                <div key={category} onClick={()=> handleFilterChange("category",category)}>{category}</div>
+              {categories.map(category => (
+                <div key={category} onClick={() => handleFilterChange("category", category)}>{category.categoryName}</div>
               ))}
             </div>
           )}
         </div>
 
-        <div className='dropdown' onClick={()=> toggleDropdown("priceRange")}>
+        <div className='dropdown' onClick={() => toggleDropdown("priceRange")}>
           <span className='dropdown-heading'>Price <i className="fa-solid fa-angle-down"></i></span>
           {dropdowns.priceRange && (
             <div className='dropdown-menu position-absolute top-100 start-0 bg-white flex-column w-auto'>
-              {["0-20","20-50","50-100"].map(range => (
-                <div key={range} onClick={()=> handleFilterChange("priceRange",range)}>${range.replace("-"," - $")}</div>
+              {["0-20", "20-50", "50-100"].map(range => (
+                <div key={range} onClick={() => handleFilterChange("priceRange", range)}>${range.replace("-", " - $")}</div>
               ))}
             </div>
           )}
         </div>
 
-        <div className='dropdown' onClick={()=> toggleDropdown('rating')}>
+        <div className='dropdown' onClick={() => toggleDropdown('rating')}>
           <span className='dropdown-heading'>Rating <i className="fa-solid fa-angle-down"></i></span>
           {dropdowns.rating && (
             <div className='dropdown-menu position-absolute top-100 start-0 bg-white flex-column w-auto'>
-              {[4,3].map(rating => (
-                <div key= {rating} onClick={()=> handleFilterChange("rating",rating)}>{rating}⭐ & above</div>
+              {[4, 3].map(rating => (
+                <div key={rating} onClick={() => handleFilterChange("rating", rating)}>{rating}⭐ & above</div>
               ))}
             </div>
           )}
         </div>
-        <div className='dropdown' onClick={()=> toggleDropdown("sort")} data-testid="sort-dropdown">
+        <div className='dropdown' onClick={() => toggleDropdown("sort")} data-testid="sort-dropdown">
           <span className='dropdown-heading'>Sort <i className="fa-solid fa-angle-down"></i></span>
           {dropdowns.sort && (
             <div className='dropdown-menu position-absolute top-100 start-0 bg-white flex-column w-auto'>
-              <div onClick={()=> handleSort("popular")}>Popular <i className="fa-solid fa-star-half-stroke"></i></div>
-              <div onClick={()=> handleSort("low-to-high")} data-testid="sort-low-to-high">Low To High <i className="fa-solid fa-arrow-down-wide-short"></i></div>
-              <div onClick={()=> handleSort("high-to-low")}>High To Low <i className="fa-solid fa-arrow-up-wide-short"></i></div>
+              <div onClick={() => handleSort("popular")}>Popular <i className="fa-solid fa-star-half-stroke"></i></div>
+              <div onClick={() => handleSort("low-to-high")} data-testid="sort-low-to-high">Low To High <i className="fa-solid fa-arrow-down-wide-short"></i></div>
+              <div onClick={() => handleSort("high-to-low")}>High To Low <i className="fa-solid fa-arrow-up-wide-short"></i></div>
             </div>
           )}
         </div>
@@ -155,21 +199,21 @@ const Products = () => {
       </div>
       <div className='popular-products__list'>
         {loading ? (
-         [...Array(15)].map((_,index)=>(
-          <div className='popular-products__item skeleton' key={index}>
-            <div className='skeleton-img placeholder w-100'></div>
-            <div className='skeleton-content mt-3 mb-3'>
-              <div className='placeholder w-50 mb-2'></div>
-              <div className='placeholder w-100 mb-2'></div>
-              <div className='placeholder w-75'></div>
+          [...Array(15)].map((_, index) => (
+            <div className='popular-products__item skeleton' key={index}>
+              <div className='skeleton-img placeholder w-100'></div>
+              <div className='skeleton-content mt-3 mb-3'>
+                <div className='placeholder w-50 mb-2'></div>
+                <div className='placeholder w-100 mb-2'></div>
+                <div className='placeholder w-75'></div>
+              </div>
+              <div className='skeleton-pricecart'>
+                <div className='placeholder w-50 mb-2'></div>
+                <div className='placeholder w-25'></div>
+              </div>
             </div>
-            <div className='skeleton-pricecart'>
-              <div className='placeholder w-50 mb-2'></div>
-              <div className='placeholder w-25'></div>
-            </div>
-          </div>
-        ))
-        ):filteredProducts.length > 0 ? (
+          ))
+        ) : filteredProducts.length > 0 ? (
           filteredProducts.map((product, index) => (
             <Link to={`/product/${product._id}`} className='popular-products__item d-flex flex-column position-relative rounded-2 h-auto text-black text-decoration-none w-100' key={product._id} data-testid="product-item">
               <div className='popular-products__item-offers d-flex flex-column align-items-start justify-content-between position-absolute'>
@@ -185,7 +229,7 @@ const Products = () => {
                 </p>
                 <div className='popular-products__item-price-cart d-flex w-100 align-items-center justify-content-between'>
                   <h3 className='popular-products__item-price'>${product.price} <span className='popular-products__item-original-price text-secondary fw-semibold text-decoration-line-through'>{product.originalPrice}</span></h3>
-                  <button className='popular-products__item-btn text-white border-0 rounded fw-semibold ' onClick={(e)=>{e.stopPropagation();e.preventDefault();addToCart(product)}} data-testid="add-btn-1">+ Add</button>
+                  <button className='popular-products__item-btn text-white border-0 rounded fw-semibold ' onClick={(e) => { e.stopPropagation(); e.preventDefault(); addToCart(product) }} data-testid="add-btn-1">+ Add</button>
                 </div>
               </div>
               <div className='popular-products__item-options position-absolute flex-row align-items-center justify-content-between gap-2'>
@@ -195,10 +239,10 @@ const Products = () => {
               </div>
             </Link>
           ))
-        ):(
+        ) : (
           <div className='no-products d-flex align-items-center flex-column justify-content-between m-auto p-auto'>
-          <p className='fs-5 fw-normal'>No Products Available !!!</p>
-          <button className='btn bg-success text-white fs-6 fw-normal' onClick={handleResetFilters}>Reset Filter <i className="fa-solid fa-rotate-right"></i></button>
+            <p className='fs-5 fw-normal'>No Products Available !!!</p>
+            <button className='btn bg-success text-white fs-6 fw-normal' onClick={handleResetFilters}>Reset Filter <i className="fa-solid fa-rotate-right"></i></button>
           </div>
         )}
       </div>

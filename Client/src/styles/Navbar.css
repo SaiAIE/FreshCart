@@ -8,10 +8,11 @@
 
 .navbar__dropdown{
   transition: 0.3s ease-in-out;
+  z-index: 1;
 }
 .navbar__dropdown-heading{
   cursor:pointer;
-  padding: 10px 15px;
+  padding: 5px 10px;
   background: none;
   font-weight: 500;
   transition: 0.3s ease-in-out;
@@ -46,6 +47,7 @@
   display: block;
   animation: popUp 0.4s ease forwards;
 }
+
 
 @keyframes popUp {
   0% {
@@ -118,4 +120,33 @@ top: 40px;
   .navbar{
       display: none;
     }
+}
+
+
+.navbar__pagination {
+  padding: 10px 0;
+  text-align: center;
+  width: 93%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+ 
+.navbar__pagination-btn {
+  background-color: #0AAD0A;
+  color: white;
+  padding: 5px 13px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+ 
+.navbar__pagination-btn:hover {
+  background-color: #018801;
+}
+ 
+.navbar__pagination-btn:disabled {
+  background-color: #cccccc;
+  visibility: hidden;
+  cursor: not-allowed;
 }
