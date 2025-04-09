@@ -172,8 +172,8 @@ const Products = () => {
               </div>
             </div>
           ))
-        ) : products.length > 0 ? (
-          products.map((product, index) => (
+        ) : products?.length > 0 ? (
+          products?.map((product, index) => (
             <Link to={`/product/${product._id}`} className='popular-products__item d-flex flex-column position-relative rounded-2 h-auto text-black text-decoration-none w-100' key={product._id} data-testid="product-item">
               <div className='popular-products__item-offers d-flex flex-column align-items-start justify-content-between position-absolute'>
                 {product.offer && <span className='popular-products__offer text-white fw-bold'>{product.offer}</span>}

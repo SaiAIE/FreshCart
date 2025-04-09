@@ -25,7 +25,7 @@ const Features = () => {
   return (
     <div className='features w-100 d-flex align-items-center justify-content-between'>
       {loading ? (
-        <div className='features_lists-skeleton gap-1 w-100 d-flex justify-content-between' data-testid="features-loading">
+        <div className='features_lists-skeleton gap-1 w-100 d-flex justify-content-between' data-testId="features-loading">
         {[...Array(4)].map((_, index) => (
           <div key={index} className='features__item features__item-skeleton d-flex align-items-start justify-content-between gap-2 bg-white w-90 rounded-2'>
             <div className='features__item-icon features__item-icon-skeleton'></div>

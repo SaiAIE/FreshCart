@@ -56,7 +56,7 @@ describe("Products Component", () => {
         );
 
         await waitFor(() => expect(getProducts).toHaveBeenCalled());
-        expect(screen.getByText("No Products Available !!!")).toBeInTheDocument();
+        expect( await screen.findByText("No Products Available !!!")).toBeInTheDocument();
     });
 
     test("applies category filter correctly", async () => {
