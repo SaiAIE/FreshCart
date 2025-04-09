@@ -6,7 +6,7 @@ import "../styles/Navbar.css";
 const Navbar = () => {
   const [dropdownData, setDropdownData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0)
-  const categoriesPerPage = 7
+  const categoriesPerPage = 6
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -55,10 +55,6 @@ const Navbar = () => {
     if(currentPage > 0){
       setCurrentPage(currentPage - 1)
     }
-  }
-
-  const handleHomeClick = ()=>{
-    navigate("/")
   }
 
   return (

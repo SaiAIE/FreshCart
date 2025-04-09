@@ -1,47 +1,79 @@
 const { Product } = require("../models/product.model.js");
 const { CategoryProduct } = require("../models/productsCategories.model.js");
 
- const createProduct = async (req,res)=>{
-    try{
-        const product = new Product(req.body)
-        await product.save()
-
-        const categoryProducts =products.map(product => ({
-            productId: product._id,
-            category: product.category,
-            name: product.name
-        }))
-        
-        await categoryProducts.save()
-        res.status(201).json({message:"Product Created & Data Extracted",product, categoryProducts})
-    }catch(err){
-        res.status(500).json({error:err.message})
+const createProduct = async (req, res) => {
+    try {
+      const product = new Product(req.body);
+      await product.save();
+   
+      const categoryProduct = new CategoryProduct({
+        productId: product._id,
+        category: product.category,
+        name: product.name,
+      });
+   
+      await categoryProduct.save();
+   
+      res.status(201).json({
+        message: "Product Created & Data Extracted",
+        product,
+        categoryProduct,
+      });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
     }
-}
+  };
 
- const getAllProducts = async(req,res)=>{
-    try{
-        const {category, priceRange, rating, sortOrder} = req.query
-        let filter ={}
-        if(category) filter.category = category
-        if(priceRange){
-            const [min, max] = priceRange.split('').map(Number)
-            filter.price = {$gte: min, $lte:max}
-        }
-
-        if(rating){
-            filter ['rating.length'] = {$gte:Number(rating)}
-        }
-        let sortOption = {}
-        if(sortOrder === "low-to-high") sortOption.price=1
-        else if (sortOrder === "high-to-low") sortOption.price = -1
-        else if (sortOrder === "popular") sortOption.rating = -1
-        const products = await Product.find(filter).sort(sortOption)
-        res.status(200).json(products)
-    }catch(error){
-        res.status(500).json({error:error.message})
+  const getAllProducts = async (req, res) => {
+    try {
+      const rawCategory = req.query.category?.trim().replace(/\/$/, "");
+      const rawPriceRange = req.query.priceRange?.trim().replace(/\/$/, "");
+      const rawRating = req.query.rating?.trim().replace(/\/$/, "");
+      const rawSort = req.query.sort?.trim().replace(/\/$/, "");
+   
+      let filter = {};
+      if (rawCategory) {
+        filter.category = rawCategory;
+      }
+   
+      if (rawRating) {
+        filter.rating = { $gte: Number(rawRating) };
+      }
+   
+      let products = await Product.find(filter).lean();
+   
+      if (rawPriceRange) {
+        const [min, max] = rawPriceRange.split("-").map(Number);
+        products = products.filter((p) => {
+          const numericPrice = parseFloat(p.price.replace("$", ""));
+          return numericPrice >= min && numericPrice <= max;
+        });
+      }
+   
+      if (rawSort === "low-to-high") {
+        products.sort(
+          (a, b) =>
+            parseFloat(a.price.replace(/[^\d.]/g, "")) -
+            parseFloat(b.price.replace(/[^\d.]/g, ""))
+        );
+      } else if (rawSort === "high-to-low") {
+        products.sort(
+          (a, b) =>
+            parseFloat(b.price.replace(/[^\d.]/g, "")) -
+            parseFloat(a.price.replace(/[^\d.]/g, ""))
+        );
+      } else if (rawSort === "popular") {
+        products.sort(
+          (a, b) =>
+            (parseInt(b.rating) || 0) - (parseInt(a.rating) || 0)
+        );
+      }
+      res.status(200).json(products);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-}
+  };
+
  const getProductById = async(req,res)=>{
     try{
         const product = await Product.findById(req.params.id)

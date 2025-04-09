@@ -1,164 +1,123 @@
 import React, { useState, useEffect } from 'react';
-import { getAllCategoriesProducts } from '../api/api.service';
-import { getProducts } from '../api/api.service';
+import { getAllCategoriesProducts, getProducts } from '../api/api.service';
 import { Link, useParams } from "react-router-dom"
 import { useCart } from '../contexts/CartContext';
 import "../styles/PopularProducts.css";
 
 const Products = () => {
-  const [categories, setCategories] = useState([])
-  const { category: categoryFromParams } = useParams()
-  console.log("CATGEORY FROM PARAMS",categoryFromParams)
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
-  const { addToCart } = useCart()
-  const [filteredProducts, setFileteredProducts] = useState([])
-  const [originalOrder, setOriginalOrder] = useState([])
-  const [selectFilters, setSelectedFilters] = useState({
+  const [categories, setCategories] = useState([]);
+  const { category: categoryFromParams } = useParams();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { addToCart } = useCart();
+  const [ filtersReset, setFiltersReset] = useState(false)
+  const [originalProducts, setOriginalProducts] = useState([])
+  const [selectedFilters, setSelectedFilters] = useState({
     category: "",
     priceRange: "",
     rating: "",
-    sortOrder: ""
-  })
-  const [dropdowns, setDropdowns] = useState({})
-  console.log(categories)
-  console.log(products)
-
-  useEffect(()=> {
-    if(!categoryFromParams){
+    sort: ""
+  });
+  const [dropdowns, setDropdowns] = useState({});
+ 
+  useEffect(() => {
+    if(!filtersReset){
       setSelectedFilters(prev => ({
         ...prev,
-        category:""
-      }))
-      setFileteredProducts(products)
+        category: categoryFromParams || ""
+      }));
     }
-  },[categoryFromParams,products])
-
-  useEffect (()=> {
-    const fetchCategories = async ()=>{
-      try{
-        const fetchedCategories = await getAllCategoriesProducts()
-        const fetchedProducts = await getProducts()
-        const validCategories = fetchedCategories.data.filter(category => 
-          fetchedProducts.some(product => product.category === category.categoryName)
-        )
-        setCategories(validCategories)
-      } catch(err){
-        console.error('Error fetching catgeories')
-      }
-    }
-    if(!categoryFromParams){
-      fetchCategories()
-    }
-  },[categoryFromParams])
-
+  }, [categoryFromParams]);
+ 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchCategories = async () => {
       try {
-        const updatedProducts = await getProducts()
-        let filtered = updatedProducts
-        if(categoryFromParams){
-          filtered = updatedProducts.filter(p => p.category === categoryFromParams)
-          setSelectedFilters(prev => ({...prev, category:categoryFromParams}))
+        const fetchedCategories = await getAllCategoriesProducts();
+        const fetchedProducts = await getProducts();
+        const validCategories = fetchedCategories.data.filter(category =>
+          fetchedProducts.some(product => product.category === category.categoryName)
+        );
+        setCategories(validCategories);
+      } catch (err) {
+        console.error("Error fetching categories", err);
+      }
+    };
+    fetchCategories();
+  }, []);
+ 
+  useEffect(() => {
+    const fetchFilteredProducts = async () => {
+      try {
+        const products = await getProducts(selectedFilters);
+        setProducts(products);
+        if(!selectedFilters.category && !selectedFilters.priceRange && !selectedFilters.rating && !selectedFilters.sort){
+          setOriginalProducts(products)
         }
-        setProducts(updatedProducts)
-        setFileteredProducts(filtered)
-        setOriginalOrder(filtered)
-      }
-      catch (err) {
-        console.log(err.message)
+      } catch (err) {
+        console.log(err.message);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
-    fetchProducts()
-  }, [categoryFromParams])
-
+    };
+    fetchFilteredProducts();
+  }, [
+    selectedFilters.category,
+    selectedFilters.priceRange,
+    selectedFilters.rating,
+    selectedFilters.sort
+  ]);
+ 
   const handleResetFilters = () => {
     setSelectedFilters({
       category: "",
       priceRange: "",
       rating: "",
-      sortOrder: "",
-    })
-    setFileteredProducts(products)
-  }
+      sort: ""
+    });
+    setProducts(originalProducts)
+    setFiltersReset(true)
+  };
 
+  useEffect(()=> {
+    if(
+      selectedFilters.category ||
+      selectedFilters.priceRange ||
+      selectedFilters.rating ||
+      selectedFilters.sort
+    ){
+      setFiltersReset(false)
+    }
+  },[selectedFilters])
+ 
   const toggleDropdown = (key) => {
-    setDropdowns(prev => ({ ...prev, [key]: !prev[key] }))
-  }
-
+    setDropdowns(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+ 
   const handleFilterChange = (key, value) => {
-    setSelectedFilters(prev => {
-      const newFilters = { ...prev, [key]: key === "rating" ? Number(value) : value }
-      applyFilters(newFilters)
-      return newFilters
-    })
-    setDropdowns(prev => ({ ...prev, [key]: false }))
-  }
-
-  const applyFilters = (filters) => {
-    let updatedList = [...products]
-
-    const selectedCategory = typeof filters.category === "string"
-    ? filters.category
-    : filters.category?.categoryName
-    console.log("FILTERS CATEGORY",selectedCategory)
-    if (selectedCategory) {
-      updatedList = updatedList.filter(product => product?.category?.trim().toLowerCase()  === selectedCategory?.trim().toLowerCase())
-      console.log("UPDATED LIST",updatedList)
-    }
-    if (filters.priceRange) {
-      const [min, max] = selectFilters.priceRange.split('-').map(Number)
-      updatedList = updatedList.filter(product => product.price >= min && product.price <= max)
-    }
-    if (filters.rating) {
-      const minRating = Number(filters.rating)
-      updatedList = updatedList.filter(product => {
-        const ratingCount = product.rating.length;
-        return ratingCount >= minRating
-      })
-    }
-
-    if (filters.sortOrder) {
-      if (filters.sortOrder === "popular") {
-        updatedList = [...originalOrder]
-      } else {
-        updatedList.sort((a, b) => filters.sortOrder === "low-to-high" ? a.price - b.price : b.price - a.price)
-      }
-    }
-    setFileteredProducts(updatedList)
-  }
-
-  useEffect(() => {
-    applyFilters(selectFilters)
-  }, [selectFilters, products])
-
-  const handleSort = (order) => {
-    setSelectedFilters(prev => ({ ...prev, sortOrder: order }))
-    setDropdowns(prev => ({ ...prev, sort: false }))
-
-    if (order === "popular") {
-      setFileteredProducts(originalOrder)
-    }
-    else {
-      const sortedList = [...filteredProducts].sort((a, b) => {
-        return order === "low-to-high" ? a.price - b.price : b.price - a.price
-      })
-      setFileteredProducts(sortedList)
-    }
-  }
+    setSelectedFilters(prev => ({
+      ...prev,
+      [key]: key === "rating" ? Number(value) : value
+    }));
+    setDropdowns(prev => ({ ...prev, [key]: false }));
+  };
+ 
+  const handleSort = (sort) => {
+    setSelectedFilters(prev => ({
+      ...prev,
+      sort
+    }));
+  };
 
   return (
     <div className='popular-products w-100'>
-      <h2 className='popular-products__title fw-semibold fs-4'>{categoryFromParams ? `Products in "${categoryFromParams}"`: "All Products"}</h2>
+      <h2 className='popular-products__title fw-semibold fs-4'>{filtersReset || !categoryFromParams ? "All Products" : `Products in "${categoryFromParams}"`}</h2>
       <div className='popular-products__controls mt-3 d-flex align-items-end justify-content-end'>
-        <div className={`dropdown position-relative d-inline-block p-0 rounded ${categoryFromParams ? "disabled":""}`} onClick={() =>toggleDropdown('category')}>
+        <div className={`dropdown position-relative d-inline-block p-0 rounded ${categoryFromParams ? "disabled" : ""}`} onClick={() => toggleDropdown('category')}>
           <span className='dropdown-heading'>Category <i className="fa-solid fa-angle-down"></i></span>
           {dropdowns.category && (
             <div className='dropdown-menu position-absolute top-100 start-0 bg-white flex-column w-auto'>
               {categories.map(category => (
-                <div key={category} onClick={() => handleFilterChange("category", category)}>{category.categoryName}</div>
+                <div key={category.categoryName} onClick={() => handleFilterChange("category", category.categoryName)}>{category.categoryName}</div>
               ))}
             </div>
           )}
@@ -168,7 +127,7 @@ const Products = () => {
           <span className='dropdown-heading'>Price <i className="fa-solid fa-angle-down"></i></span>
           {dropdowns.priceRange && (
             <div className='dropdown-menu position-absolute top-100 start-0 bg-white flex-column w-auto'>
-              {["0-20", "20-50", "50-100"].map(range => (
+              {["0-10","10-20","20-30","30-40","40-50","50-100"].map(range => (
                 <div key={range} onClick={() => handleFilterChange("priceRange", range)}>${range.replace("-", " - $")}</div>
               ))}
             </div>
@@ -213,8 +172,8 @@ const Products = () => {
               </div>
             </div>
           ))
-        ) : filteredProducts.length > 0 ? (
-          filteredProducts.map((product, index) => (
+        ) : products.length > 0 ? (
+          products.map((product, index) => (
             <Link to={`/product/${product._id}`} className='popular-products__item d-flex flex-column position-relative rounded-2 h-auto text-black text-decoration-none w-100' key={product._id} data-testid="product-item">
               <div className='popular-products__item-offers d-flex flex-column align-items-start justify-content-between position-absolute'>
                 {product.offer && <span className='popular-products__offer text-white fw-bold'>{product.offer}</span>}

@@ -21,26 +21,25 @@ export const getDropdowns = () => fetchData("dropdowns");
 export const getSliders = () => fetchData("slider");
 export const getAllCategoriesProducts = () =>fetchData("productsCategories")
 
-// export const getProducts = async () => {
-//   const products = await fetchData("product");
-//   return products.data.map(product => ({
-//     ...product,
-//     price: parseFloat(String(product.price).replace("$", ""))
-//   }));
-// };
-
 export const getProducts = async (filters = {}) => {
-  const queryObj = {}
-  if(filters.category) queryObj.category = filters.category
-  if(filters.priceRange) queryObj.priceRange = filters.priceRange
-  if(filters.rating) queryObj.rating = filters.rating
-  if(filters.sortOrder) queryObj.sortOrder = filters.sortOrder
-
-  const query = new URLSearchParams(queryObj).toString()
-  const products = await fetchData(`product?${query}`)
-  return products.data.map(product => ({
+  const queryObj = {};
+  if (filters.category) queryObj.category = filters.category;
+  if (filters.priceRange) queryObj.priceRange = filters.priceRange;
+  if (filters.rating) queryObj.rating = filters.rating;
+  if (filters.sort)  queryObj.sort = filters.sort;
+  const query = new URLSearchParams(queryObj).toString();
+  const url = `product?${query}`;
+  const products = await fetchData(url);
+  const actualProducts = Array.isArray(products)
+    ? products
+    : products.data || [];
+  return actualProducts.map((product) => ({
     ...product,
-    price: parseFloat(String(product.price).replace("$", ""))
+    price: parseFloat(
+      typeof product.price === "string"
+        ? product.price.replace("$", "")
+        : product.price
+    ),
   }));
 };
 
