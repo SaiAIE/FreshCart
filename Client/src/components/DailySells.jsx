@@ -30,7 +30,7 @@ const DailyBestSells = () => {
         {loading ? (
           // Skeleton Loader while loading data
           [...Array(4)].map((_, index) => (
-            <div data-testid = "loading-skeleton" className='daily-best-sells__item daily-best-sells__item-skeleton d-flex align-items-center justify-content-center w-100 p-2 rounded' key={index}>
+            <div data-testid="loading-skeleton" className='daily-best-sells__item daily-best-sells__item-skeleton d-flex align-items-center justify-content-center w-100 p-2 rounded' key={index}>
               <div className='daily-best-sells__item-content'>
                 <div className='daily-best-sells__item-img-skeleton w-90 rounded'></div>
                 <div className='daily-best-sells__item-description-skeleton'>
@@ -51,7 +51,14 @@ const DailyBestSells = () => {
             <div key={index} className={`daily-best-sells__item daily-best-sells__item--${index === 0 ? '1' : '2'}`}>
               {index === 0 ? (
                 <div className='daily-best-sells__item-content'>
-                  <img src={item.img} alt={item.title} className='daily-best-sells__item-img-1 rounded-3 object-fit-cover w-100' />
+                  <picture>
+                    <img
+                      src={item.img}
+                      alt={item.title}
+                      loading="lazy"
+                      className="daily-best-sells__item-img-1 rounded-3 object-fit-cover w-100"
+                    />
+                  </picture>
                   <div className='daily-best-sells__item-description position-absolute text-white d-flex flex-column align-items-start gap-2 py-3'>
                     <h3 className='daily-best-sells__item-title fs-4 fw-bold' role="heading" aria-level="3">{item.title}</h3>
                     <p className='daily-best-sells__item-desc fs-6'>{item.description}</p>
@@ -79,7 +86,9 @@ const DailyBestSells = () => {
               ) : (
                 <>
                   <div className='daily-best-sells__item-img-container d-flex align-items-center justify-content-center'>
-                    <img src={item.img} alt={item.title} className='daily-best-sells__item-img rounded-3 object-cover w-100 h-75 p-0 h-100' />
+                  <picture>
+                    <img src={item.img} alt={item.title} className='daily-best-sells__item-img rounded-3 object-cover w-100 h-75 p-0 h-100' loading='lazy'/>
+                    </picture>
                   </div>
                   <div className='daily-best-sells_item-content d-flex flex-column gap-1'>
                     {item.category && <p className='daily-best-sells__item-category text-secondary fw-normal m-0'>{item.category}</p>}
@@ -121,7 +130,7 @@ const DailyBestSells = () => {
           ))
         ) : (
           <div className='w-100 d-flex align-items-center justify-content-center'>
-          <div className='fs-5 fw-normal'>No Products Available</div>
+            <div className='fs-5 fw-normal'>No Products Available</div>
           </div>
         )}
       </div>

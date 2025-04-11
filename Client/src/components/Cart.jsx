@@ -31,18 +31,20 @@ const Cart = ({ isOpen, onClose }) => {
                         </button>
                     </div>
                 ) : (
-                    <>
+                    <div className='overflow-scroll'>
                         <p className='free-delivery text-left p-2 fs-6 fw-normal bg-danger bg-opacity-25 rounded'>
                             You've got FREE Delivery. Start <span className='fw-bold'>checkout now!</span>
                         </p>
                         <ul className='list-group'>
                             {cartItems.map((product) => (
                                 <li key={product._id} className='list-group-item d-flex align-items-center justify-content-between flex-row border-0'>
-                                    <img src={product.image[0]} alt={product.name} className='cart-img me-3 img-fluid rounded' />
+                                    <picture>
+                                    <img src={product.image[0]} alt={product.name} className='cart-img me-3 img-fluid rounded' loading='lazy'/>
+                                    </picture>
                                     <div className='flex-grow-1 d-flex flex-row align-items-center justify-content-between'>
                                         <div className='w-50 d-flex align-items-center'>
                                             <h6 className='m-0 fs-6 fw-bold'>
-                                                {product.name} <br /> <span className='text-muted fs-6 fw-normal'>{product.details.quantity[0]}</span> <br />
+                                                {product.name} <br /> <span className='text-muted fs-6 fw-normal'>{product?.details?.quantity[0]}</span> <br />
                                                 <button className=' p-0 py-2 fs-6 fw-light btn border-none' onClick={() => removeFromCart(product._id)}>
                                                     <i className="fa-regular fa-trash-can text-success"></i> Remove
                                                 </button>
@@ -52,13 +54,13 @@ const Cart = ({ isOpen, onClose }) => {
                                             <div>
                                                 <input className='button-minus btn btn-sm border' type='button'
                                                     onClick={() => decrementQuantity(product._id)} value="-" />
-                                                <span className='btn border px-2 py-1'>{product.quantity}</span>
+                                                <span className='btn border px-2 py-1'>{product?.quantity}</span>
                                                 <input className='button-plus btn btn-sm border ' type="button"
                                                     onClick={() => incrementQuantity(product._id)} value="+" />
                                             </div>
                                             <div>
                                                 <p className='text-end fw-bold m-0'>
-                                                    ${((parseFloat(String(product.price).replace("$", "")) || 0) * product.quantity).toFixed(2)}
+                                                    ${((parseFloat(String(product.price).replace("$", "")) || 0) * product?.quantity).toFixed(2)}
                                                 </p>
                                             </div>
                                         </div>
@@ -71,7 +73,7 @@ const Cart = ({ isOpen, onClose }) => {
                             <button className='btn bg-success text-white p-2 px-3' onClick={onClose}>Continue Shopping</button>
                             <button className='btn btn-dark mt-2 p-2 px-3' onClick={onClose}>Proceed To Checkout</button>
                         </div>
-                    </>
+                    </div>
                 )}
             </div>
         </div>

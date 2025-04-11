@@ -40,7 +40,7 @@ const createProduct = async (req, res) => {
         filter.rating = { $gte: Number(rawRating) };
       }
    
-      let products = await Product.find(filter).lean();
+      let products = await Product.find(filter).select("-__v");
    
       if (rawPriceRange) {
         const [min, max] = rawPriceRange.split("-").map(Number);

@@ -44,7 +44,7 @@ const FeaturesProducts = () => {
 
       <div className='features-products__cards d-flex my-4 flex-wrap'>
         {loading ? (
-          
+
           [...Array(12)].map((_, index) => (
             <div data-testid="features-products-loading" className='features-products__card features-products__card-skeleton d-flex flex-column align-items-center justify-content-evenly p-4 gap-2 fs-6 fw-normal text-muted text-center rounded bg-white d-flex flex-column align-items-center justify-content-between' key={index}>
               <div className='features-products__card-img features-products__card-img-skeleton rounded'></div>
@@ -52,10 +52,16 @@ const FeaturesProducts = () => {
             </div>
           ))
         ) : (
-          
+
           categoriesData.map((category, index) => (
             <div className='features-products__card d-flex flex-column align-items-center justify-content-evenly p-4 gap-2 fs-6 fw-normal text-muted text-center rounded' key={index}>
-              <img src={category.img} alt={category.title} className='features-products__card-img' />
+              <picture>
+                <img
+                  src={category.img}
+                  alt={category.title}
+                  className="features-products__card-img"
+                />
+              </picture>
               <p className='features-products__card-title'>{category.title}</p>
             </div>
           ))

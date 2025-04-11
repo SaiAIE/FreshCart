@@ -3,7 +3,7 @@ import "../../styles2/Reviews.css"
 
 const ReviewItem = ({ index, review, product }) => {
 
-  
+
   const formatReviewDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-GB", {
@@ -13,7 +13,7 @@ const ReviewItem = ({ index, review, product }) => {
     });
   };
 
-  
+
   const renderVerificationStatus = (isVerified) => {
     return isVerified ? (
       <span style={{ color: '#0AAD0A', fontSize: "13px" }}>Verified Purchase</span>
@@ -24,15 +24,17 @@ const ReviewItem = ({ index, review, product }) => {
 
   return (
     <div key={index} className="product-info__review-item d-flex flex-row my-4 w-100">
-      {/* Actual content without the loading state */}
       <div className='product-info__review-item d-flex flex-row my-4 w-100'>
-        <img
-          src={review?.profile}
-          alt=""
-          width="60px"
-          height="60px"
-          className="product-info__review-avatar rounded-circle me-4"
-        />
+        <picture>
+          <img
+            src={review?.profile}
+            alt=""
+            width="60px"
+            height="60px"
+            loading='lazy'
+            className="product-info__review-avatar rounded-circle me-4"
+          />
+        </picture>
         <div className="product-info__review-content w-100">
           <p className="product-info__review-header">
             <strong>{review?.reviewer}</strong>{" "}
@@ -57,14 +59,17 @@ const ReviewItem = ({ index, review, product }) => {
             {review?.images?.length > 0 && (
               <div className="product-info__review-images">
                 {review?.images?.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt="review image"
-                    width="50px"
-                    height="50px"
-                    className="product-info__review-image border m-1"
-                  />
+                  <picture>
+                    <img
+                      key={index}
+                      src={image}
+                      alt="review image"
+                      width="50px"
+                      height="50px"
+                      loading='lazy'
+                      className="product-info__review-image border m-1"
+                    />
+                  </picture>
                 ))}
               </div>
             )}
@@ -88,42 +93,42 @@ export default ReviewItem;
 
 
 export const SkeletonReviewItem = () => (
-    <div className="product-info__review-item skeleton-review-item">
+  <div className="product-info__review-item skeleton-review-item">
+    <img
+      className="product-info__review-avatar rounded-circle me-4 skeleton-review-avatar"
+      width="60px"
+      height="60px"
+    />
+    <div className="product-info__review-content w-100 skeleton-review-content">
+      <div className="product-info__review-header skeleton-review-header">
+        <div className="skeleton-reviewer-name w-50 "></div>
+        <div className="product-info__review-date fw-light fs-6 me-2 text-muted skeleton-review-date w-25 "></div>
+        <div className="product-info__review-status fw-bold fs-6 skeleton-review-status w-25 "></div>
+      </div>
+      <div className="product-info__review-main-comment fw-bolder skeleton-review-comment"></div>
+      <div className="product-info__review-main-comment fw-bolder skeleton-review-comment"></div>
+      <div className="product-info__review-images skeleton-review-images">
         <img
-            className="product-info__review-avatar rounded-circle me-4 skeleton-review-avatar"
-            width="60px"
-            height="60px"
+          className="product-info__review-image border m-1 skeleton-review-image"
+          width="50px"
+          height="50px"
         />
-        <div className="product-info__review-content w-100 skeleton-review-content">
-            <div className="product-info__review-header skeleton-review-header">
-                <div className="skeleton-reviewer-name w-50 "></div>
-                <div className="product-info__review-date fw-light fs-6 me-2 text-muted skeleton-review-date w-25 "></div>
-                <div className="product-info__review-status fw-bold fs-6 skeleton-review-status w-25 "></div>
-            </div>
-            <div className="product-info__review-main-comment fw-bolder skeleton-review-comment"></div>
-            <div className="product-info__review-main-comment fw-bolder skeleton-review-comment"></div>
-            <div className="product-info__review-images skeleton-review-images">
-                <img
-                    className="product-info__review-image border m-1 skeleton-review-image"
-                    width="50px"
-                    height="50px"
-                />
-                <img
-                    className="product-info__review-image border m-1 skeleton-review-image"
-                    width="50px"
-                    height="50px"
-                />
-                <img
-                    className="product-info__review-image border m-1 skeleton-review-image"
-                    width="50px"
-                    height="50px"
-                />
-            </div>
-            <div className="product-info__review-footer d-flex flex-row align-items-end justify-content-end gap-3 text-muted mt-4 w-100 skeleton-review-footer">
-                <div className="product-info__review-helpful skeleton-footer-action"></div>
-                <div className="product-info__review-report skeleton-footer-action"></div>
-            </div>
-        <hr />
-        </div>
+        <img
+          className="product-info__review-image border m-1 skeleton-review-image"
+          width="50px"
+          height="50px"
+        />
+        <img
+          className="product-info__review-image border m-1 skeleton-review-image"
+          width="50px"
+          height="50px"
+        />
+      </div>
+      <div className="product-info__review-footer d-flex flex-row align-items-end justify-content-end gap-3 text-muted mt-4 w-100 skeleton-review-footer">
+        <div className="product-info__review-helpful skeleton-footer-action"></div>
+        <div className="product-info__review-report skeleton-footer-action"></div>
+      </div>
+      <hr />
     </div>
+  </div>
 );

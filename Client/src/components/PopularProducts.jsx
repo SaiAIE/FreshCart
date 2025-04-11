@@ -70,7 +70,16 @@ const PopularProducts = () => {
                 {product.offer && <span className='popular-products__offer text-white fw-bold'>{product.offer}</span>}
                 {product.offerValue && <span className='popular-products__offer-value text-white fw-bold'>{product.offerValue}</span>}
               </div>
-              <img src={product.image[0]} alt={product.name} className='popular-products__item-img' />
+              <picture className=' popular-products__item-img d-flex align-items-center justify-content-center w-100'>
+                <img
+                  src={product.image[0]}
+                  alt={product.name}
+                  className="popular-products__item-img w-100"
+                  width="100%"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <div className='popular-products__item-content d-flex flex-column align-items-start justify-content-between'>
                 <p className='popular-products__item-category text-secondary'>{product.category}</p>
                 <h3 className='popular-products__item-name'>{product.name}</h3>

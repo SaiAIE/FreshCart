@@ -18,6 +18,8 @@ const ProductDetail = () => {
   const [error, setError] = useState(null);
   const [count, setCount] = useState(1);
 
+  console.log(product)
+
   useEffect(() => {
     const fetchProduct = async ()=>{
       try{
@@ -73,11 +75,13 @@ const ProductDetail = () => {
       </p>
       <div className='product-details__main d-flex flex-column flex-md-row'>
         <div className='product-details__left'>
-          <div className='product-details__main-image' onMouseMove={zoomImage} onMouseLeave={resetZoom}>
+          <div  onMouseMove={zoomImage} onMouseLeave={resetZoom} className='w-100'>
             {loading ? (
               <div className='product-details__main-image-skeleton' />
             ) : (
-              <img src={mainImage} alt="" />
+              <picture className='product-details__main-image w-100'>
+              <img src={mainImage} loading='lazy' alt="" />
+              </picture>
             )}
           </div>
           <div className='product-details__thumbnail-container'>
@@ -86,13 +90,16 @@ const ProductDetail = () => {
                 <div key={index} className="product-details__thumbnail-skeleton" />
               ))
             ) : (product?.image?.map((img, index) => (
+              <picture>
               <img
                 src={img}
                 alt=""
                 key={index}
                 className={`product-details__thumbnail ${mainImage === img ? 'product-details__thumbnail--active' : ''}`}
                 onClick={() => setMainImage(img)}
+                loading='lazy'
               />
+              </picture>
             )))}
           </div>
         </div>
@@ -168,7 +175,7 @@ const ProductDetail = () => {
                 <div className="skeleton-button" style={{ width: "30%" }}></div>
               </>
             ) : (
-              <>
+              <div className='d-flex align-items-center justify-content-start'>
                 <button onClick={() => setCount(prev => Math.max(1, prev - 1))} className='product-details__counter-btn btn border'>
                   -
                 </button>
@@ -176,7 +183,7 @@ const ProductDetail = () => {
                 <button onClick={() => setCount(count + 1)} className='product-details__counter-btn btn border'>
                   +
                 </button>
-              </>
+              </div>
             )}
           </div>
 

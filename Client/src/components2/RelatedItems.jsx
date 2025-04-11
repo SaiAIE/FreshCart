@@ -50,7 +50,9 @@ const RelatedItems = () => {
               {product.offer && <span className='popular-products__offer text-white fw-bold'>{product.offer}</span>}
               {product.offerValue && <span className='popular-products__offer-value text-white fw-bold'>{product.offerValue}</span>}
             </div>
-            <img src={product.image[0]} alt={product.name} className='popular-products__item-img' />
+            <picture>
+            <img src={product.image[0]} alt={product.name} className='popular-products__item-img' loading='lazy'/>
+            </picture>
             <div className='popular-products__item-content d-flex flex-column align-items-start justify-content-between'>
               <p className='popular-products__item-category text-secondary'>{product.category}</p>
               <h3 className='popular-products__item-name'>{product.name}</h3>

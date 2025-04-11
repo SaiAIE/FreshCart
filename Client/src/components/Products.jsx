@@ -10,7 +10,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { addToCart } = useCart();
-  const [ filtersReset, setFiltersReset] = useState(false)
+  const [filtersReset, setFiltersReset] = useState(false)
   const [originalProducts, setOriginalProducts] = useState([])
   const [selectedFilters, setSelectedFilters] = useState({
     category: "",
@@ -19,16 +19,16 @@ const Products = () => {
     sort: ""
   });
   const [dropdowns, setDropdowns] = useState({});
- 
+
   useEffect(() => {
-    if(!filtersReset){
+    if (!filtersReset) {
       setSelectedFilters(prev => ({
         ...prev,
         category: categoryFromParams || ""
       }));
     }
   }, [categoryFromParams]);
- 
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -44,13 +44,13 @@ const Products = () => {
     };
     fetchCategories();
   }, []);
- 
+
   useEffect(() => {
     const fetchFilteredProducts = async () => {
       try {
         const products = await getProducts(selectedFilters);
         setProducts(products);
-        if(!selectedFilters.category && !selectedFilters.priceRange && !selectedFilters.rating && !selectedFilters.sort){
+        if (!selectedFilters.category && !selectedFilters.priceRange && !selectedFilters.rating && !selectedFilters.sort) {
           setOriginalProducts(products)
         }
       } catch (err) {
@@ -66,7 +66,7 @@ const Products = () => {
     selectedFilters.rating,
     selectedFilters.sort
   ]);
- 
+
   const handleResetFilters = () => {
     setSelectedFilters({
       category: "",
@@ -78,21 +78,21 @@ const Products = () => {
     setFiltersReset(true)
   };
 
-  useEffect(()=> {
-    if(
+  useEffect(() => {
+    if (
       selectedFilters.category ||
       selectedFilters.priceRange ||
       selectedFilters.rating ||
       selectedFilters.sort
-    ){
+    ) {
       setFiltersReset(false)
     }
-  },[selectedFilters])
- 
+  }, [selectedFilters])
+
   const toggleDropdown = (key) => {
     setDropdowns(prev => ({ ...prev, [key]: !prev[key] }));
   };
- 
+
   const handleFilterChange = (key, value) => {
     setSelectedFilters(prev => ({
       ...prev,
@@ -100,7 +100,7 @@ const Products = () => {
     }));
     setDropdowns(prev => ({ ...prev, [key]: false }));
   };
- 
+
   const handleSort = (sort) => {
     setSelectedFilters(prev => ({
       ...prev,
@@ -127,7 +127,7 @@ const Products = () => {
           <span className='dropdown-heading'>Price <i className="fa-solid fa-angle-down"></i></span>
           {dropdowns.priceRange && (
             <div className='dropdown-menu position-absolute top-100 start-0 bg-white flex-column w-auto'>
-              {["0-10","10-20","20-30","30-40","40-50","50-100"].map(range => (
+              {["0-10", "10-20", "20-30", "30-40", "40-50", "50-100"].map(range => (
                 <div key={range} onClick={() => handleFilterChange("priceRange", range)}>${range.replace("-", " - $")}</div>
               ))}
             </div>
@@ -179,7 +179,15 @@ const Products = () => {
                 {product.offer && <span className='popular-products__offer text-white fw-bold'>{product.offer}</span>}
                 {product.offerValue && <span className='popular-products__offer-value text-white fw-bold'>{product.offerValue}</span>}
               </div>
-              <img src={product.image[0]} alt={product.name} className='popular-products__item-img' />
+              <picture className='popular-products__item-img d-flex align-items-center justify-content-center w-100'>
+                <img
+                  src={product.image[0]}
+                  alt={product.name}
+                  className="popular-products__item-img w-100"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <div className='popular-products__item-content d-flex flex-column align-items-start justify-content-between'>
                 <p className='popular-products__item-category text-secondary'>{product.category}</p>
                 <h3 className='popular-products__item-name' data-testid="product-name">{product.name}</h3>
