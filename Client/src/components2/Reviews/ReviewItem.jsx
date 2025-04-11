@@ -57,9 +57,9 @@ const ReviewItem = ({ index, review, product }) => {
           </h6>
           <div>
             {review?.images?.length > 0 && (
-              <div className="product-info__review-images">
+              <div className="product-info__review-images d-flex flex-row">
                 {review?.images?.map((image, index) => (
-                  <picture>
+                  <picture >
                     <img
                       key={index}
                       src={image}

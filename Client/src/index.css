@@ -5,8 +5,10 @@
   box-sizing: border-box;
   font-family: "Inter", serif;
 }
-*img{
-  object-fit: cover;
+img,video{
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 .freshcart{
 /* border: 2px solid red; */
