@@ -87,7 +87,7 @@ const DailyBestSells = () => {
                 <>
                   <div className='daily-best-sells__item-img-container d-flex align-items-center justify-content-center'>
                   <picture>
-                    <img src={item.img} alt={item.title} className='daily-best-sells__item-img rounded-3 object-cover w-100 h-75 p-0 h-100' loading='lazy'/>
+                    <img src={item.img} alt={item.title} className='daily-best-sells__item-img rounded-3 object-cover w-100 h-75 p-0 h-100' loading='eager'/>
                     </picture>
                   </div>
                   <div className='daily-best-sells_item-content d-flex flex-column gap-1'>

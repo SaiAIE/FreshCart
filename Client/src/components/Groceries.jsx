@@ -25,6 +25,7 @@ const Groceries = () => {
             <img
               src={grocery.img}
               alt={grocery.title}
+              loading='eager'
               className="groceries__item-img rounded-3 object-fit-cover w-100"
             />
           </picture>

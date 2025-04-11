@@ -5,21 +5,23 @@ import "../styles/Topbar.css"
 
 const Topbar = () => {
   return (
-      <div className='topbar d-flex w-100 align-items-center fs-6'>
-        <p className='topbar_text m-0'>Super Value Deals - Save more with coupons</p>
-        <div className='topbar__menu m-0 pe-0'>
-          <div className='topbar__dropdown position-relative'>
-        <div className='topbar__dropdown-heading cursor-pointer bg-none border-0 rounded fs-6 d-flex flex-row align-items-center justify-content-center gap-1 pe-0 m-0 px-3' style={{cursor:"pointer"}}> 
-        <picture><img src={uk} width="20px" alt="" className='topbar__menu-img' loading='lazy'/></picture> English <i className="fa-solid fa-angle-down"></i></div>
+    <div className='topbar d-flex w-100 align-items-center fs-6'>
+      <p className='topbar_text m-0'>Super Value Deals - Save more with coupons</p>
+      <div className='topbar__menu m-0 pe-0'>
+        <div className='topbar__dropdown position-relative'>
+          <div className='topbar__dropdown-heading cursor-pointer bg-none border-0 rounded fs-6 d-flex flex-row align-items-center justify-content-center gap-1 pe-0 m-0 px-3' style={{ cursor: "pointer" }}>
+            <picture><img src={uk} width="20px" alt="" className='topbar__menu-img' loading='lazy' /></picture> English <i className="fa-solid fa-angle-down"></i></div>
           <div className='topbar__dropdown-options position-absolute top-100 start-50 bg-white rounded z-1 p-1'>
-        <p className='topbar__dropdown-option mx-1 my-1 rounded d-flex flex-row align-items-center justify-content-start cursor-pointer px-2 py-1' style={{cursor:"pointer"}}>
-           <picture> <img src={uk} width="20px" alt="" className='topbar__menu-img me-2'/></picture> English</p>
-        <p className='topbar__dropdown-option mx-1 my-1 rounded d-flex flex-row align-items-center justify-content-start cursor-pointer px-2 py-1' style={{cursor:"pointer"}}>
-          <picture> <img src={germany} width="20px" alt="" className='topbar__menu-img me-2'/></picture> Deustch</p>
+            <p className='topbar__dropdown-option mx-1 my-1 rounded d-flex flex-row align-items-center justify-content-start cursor-pointer px-2 py-1' style={{ cursor: "pointer" }}>
+              <picture> <img src={uk} width="20px" alt="" className='topbar__menu-img me-2' loading="eager"
+                fetchPriority='high' /></picture> English</p>
+            <p className='topbar__dropdown-option mx-1 my-1 rounded d-flex flex-row align-items-center justify-content-start cursor-pointer px-2 py-1' style={{ cursor: "pointer" }}>
+              <picture> <img src={germany} width="20px" alt="" className='topbar__menu-img me-2' loading="eager"
+                fetchPriority='high' /></picture> Deustch</p>
           </div>
         </div>
-        </div>
       </div>
+    </div>
   )
 }
 

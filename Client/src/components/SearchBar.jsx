@@ -133,14 +133,15 @@ const SearchBar = () => {
 
       <div className='searchbar__left d-flex flex-row align-items-center justify-content-between'>
         <picture>
-        <source srcSet={logo.replace(/\.(jpeg|png)$/, '.avif')} type="image/avif" />
-        <source srcSet={logo.replace(/\.(jpeg|png)$/, '.webp')} type="image/webp" />
+          <source srcSet={logo.replace(/\.(jpeg|png)$/, '.avif')} type="image/avif" />
+          <source srcSet={logo.replace(/\.(jpeg|png)$/, '.webp')} type="image/webp" />
           <img
             src={logo}
             alt="Logo"
             className="searchbar__logo"
             onClick={handleHomeClick}
-            loading='eager'
+            loading="eager"
+            fetchPriority='high'
             decoding='async'
           />
         </picture>

@@ -76,7 +76,7 @@ const PopularProducts = () => {
                   alt={product.name}
                   className="popular-products__item-img w-100"
                   width="100%"
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                 />
               </picture>

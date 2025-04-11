@@ -61,7 +61,8 @@ const Slides = () => {
                   src={slide.img}
                   alt={slide.alt || 'Slide Image'}
                   className='rounded-4'
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority='high'
                 />
               </picture>
               <div className='slider-container__slide-content position-absolute gap-1 d-flex flex-column align-items-start justify-content-center'>

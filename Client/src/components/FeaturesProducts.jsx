@@ -59,6 +59,7 @@ const FeaturesProducts = () => {
                 <img
                   src={category.img}
                   alt={category.title}
+                  loading='eager'
                   className="features-products__card-img"
                 />
               </picture>
